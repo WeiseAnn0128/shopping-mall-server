@@ -2,7 +2,15 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/about/login/login"
+    "pages/about/login/login",
+    "pages/about/edit/edit",
+    "pages/about/order/order",
+    "pages/about/refund/refund",
+    "pages/about/aftermarket/aftermarket",
+    "pages/about/collect/collect",
+    "pages/about/shop/shop",
+    "pages/about/history/history",
+    "pages/about/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",
