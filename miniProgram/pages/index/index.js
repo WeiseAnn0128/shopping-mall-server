@@ -4,14 +4,14 @@ const app = getApp()
 
 Page({
   data: {
-    PageCur: 'basics'
+    PageCur: 'about'
   },
   onLoad() {
-    
   },
   NavChange(e) {
     this.setData({
       PageCur: e.currentTarget.dataset.cur
-    })
+    }) 
   }
 })
+

@@ -1,38 +1,25 @@
-/* pages/userlogin/userlogin.wxss */
-.div{
-  display: flex;
-  flex-direction: column;
-  
-}
+
 .userinfo {
   display: flex;
   flex-direction: column;
-  justify-content:center;
-  
+  align-items: center;
+  color: #aaa;
 }
+
 .userinfo-avatar {
   overflow: hidden;
-  width: 160rpx;
-  height: 160rpx;
+  width: 128rpx;
+  height: 128rpx;
   margin: 20rpx;
-  border-radius: 60%;
+  border-radius: 50%;
 }
-.text1{
- text-align: left;
- margin-top:14%;
- margin-left:4% ;
- font-size: 68rpx;
+
+.logon-rights{
+  background-color: rgb(76, 130, 230);
+  color: white;
+  border-radius:20px 20px 20px 20px
 }
-.text2{
-  text-align: left;
-  color:#aaa ;
-  margin-top:2%;
- margin-left:4% ;
- font-size: 37rpx;
-}
+
 .usermotto {
-  margin-top: 90rpx;
-}
-.text{
-  font-size: 12px;
+  margin-top: 200px;
 }

@@ -1,6 +1,7 @@
 package com.ruoyi.framework.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -103,7 +104,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                         "/*.html",
                         "/**/*.html",
                         "/**/*.css",
-                        "/**/*.js"
+                        "/**/*.js",
+                        "/**"
+
                 ).permitAll()
                 .antMatchers("/profile/**").anonymous()
                 .antMatchers("/common/download**").anonymous()
