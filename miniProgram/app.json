@@ -1,11 +1,11 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/logs/logs",
     "pages/about/login/login",
     "pages/about/point/point",
-    "pages/personinfo/personinfo"
+    "pages/personinfo/personinfo",
+    "pages/about/wallet/wallet"
   ],
   "window": {
     "backgroundTextStyle": "light",
