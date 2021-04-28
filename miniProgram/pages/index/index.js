@@ -4,9 +4,12 @@ const app = getApp()
 
 Page({
   data: {
-    PageCur: 'about'
+    PageCur: 'basics'
   },
   onLoad() {
+    
+  },
+  onShow() {
     
   },
   NavChange(e) {
