@@ -1,4 +1,4 @@
-
+const network = require('../../../utils/network.js')
 let self;
 Page({
   data: {
@@ -19,40 +19,32 @@ Page({
   },
 
   userLogin:function(){
-    //2、调用获取用户信息接口
+    //1、调用获取用户信息接口
     wx.getUserProfile({
-      desc: '用于完善会员资料',
-      success:(res)=> {
-          console.log({encryptedData: res.encryptedData, iv: res.iv, code: self.data.code})
-          //3.请求自己的服务器，解密用户信息 获取unionId等加密信息
-          wx.request({
-              url: 'http://localhost:8080/wechat/getUserInfo',//自己的服务接口地址
-              method: 'post',
-              header: {
-                  'content-type': 'application/x-www-form-urlencoded'
-              },
-              data: {encryptedData: res.encryptedData, iv: res.iv, code: self.data.code},
-              success:(data)=> {
-
-                  //4.解密成功后 获取自己服务器返回的结果
-                  if (data.data.status == 1) {
-                      var userInfo_ = data.data.userInfo;
-                      console.log(userInfo_);
-                  } else {
-                      console.log('解密失败')
-                  }
-              },
-              fail: function () {
-                  console.log('系统错误')
-              }
-          })
+      desc: '用于完善用户资料',
+      success:(res)=> { 
+        console.log(res.userInfo)
+          this.setData({
+            userInfo:res.userInfo,
+            hasUserInfo:true
+          }),
+          network.request('wechat/updateUserInfo', res.userInfo, function(data) {
+            console.log(data)
+          }, 'post', true);
       },
-      fail: function () {
-          console.log('获取用户信息失败')
+      fail: res =>{
+      //拒绝授权
+      wx.showToast({
+        title: '您拒绝了授权',
+        icon:'none'
+      })
+      return;
       }
+    
     })
-    this.refreshCode();
-  },
+ },
+
+
   onLoad() {
     self = this;
     if (wx.getUserProfile) {

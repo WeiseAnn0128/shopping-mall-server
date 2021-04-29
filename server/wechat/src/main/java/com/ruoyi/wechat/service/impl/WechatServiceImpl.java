@@ -37,15 +37,25 @@ public class WechatServiceImpl implements WechatService {
     @Resource
     private SysLoginService loginService;
 
+
+
     @Override
     public String init(String code) {
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid=" + appid
                     + "&secret=" + appsecret
                     + "&js_code=" + code
                     + "&grant_type=authorization_code";
+        //发送请求
+//        System.out.println(url);
+
         String get = HttpUtil.httpRequest(url, "GET", null);
+        //解析相应内容（转换成json对象）
         JSONObject userJson = JSON.parseObject(get);
+        //用户的唯一标识（openid）
         String openid = userJson.getString("openid");
+
+        System.out.println(openid);
+
         if (StringUtils.isEmpty(openid)) {
             throw new BaseException(userJson.getString("errmsg"));
         }
@@ -67,4 +77,5 @@ public class WechatServiceImpl implements WechatService {
         }
         return loginService.wechatLogin(openid, UserConstants.WECHAT_USER_DEFAULT_PASSWORD);
     }
+
 }
