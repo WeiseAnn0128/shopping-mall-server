@@ -14,7 +14,7 @@
         <view class="nav_right_items">
         <!--界面跳转 -->
           <!-- <navigator url="../../detail/detail"> -->
-            <image src="{{item.img}}"></image>
+            <image src="{{item.img}}" bindtap="tiaozhuan" data-name="{{item.name}}"></image>
             <text>{{item.name}}</text>
           <!-- </navigator> -->
         </view>

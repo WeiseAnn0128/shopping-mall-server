@@ -1,0 +1,22 @@
+<!--pages/goodslist/goodslist.wxml-->
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">{{title}}</view></cu-custom>
+<scroll-view scroll-y="true">
+      <view class="welfares">
+         <block wx:for-items="{{goodsWelfareItems}}" wx:key="name">
+          <view class="welfares-good" catchtap="catchTapCategory" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+            <view>
+              <image src="{{item.imageurl}}" class="welfares-image" mode="widthFix" bindtap="tiaozhuan"/> 
+            </view>
+            <view class="product-name">
+              {{item.name}}
+            </view>
+            <view class="product-price-wrap">
+              <p class="product-price-new">￥{{item.newprice}}</p>  
+              <p class="product-price-old">￥{{item.oldprice}}</p> 
+            
+            </view>
+            
+          </view>
+        </block> 
+      </view>
+  </scroll-view>  
