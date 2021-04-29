@@ -1,0 +1,30 @@
+<cu-custom bgImage="https://image.weilanwl.com/color2.0/plugin/sylb2244.jpg" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">收货地址</view>
+</cu-custom>
+
+
+
+
+
+
+
+
+<scroll-view class="scroll" scroll-y="true">
+<view wx:for="{{addressList}}">
+<view class="product-name-wrap">
+<view class="ui-list-item-info">{{item.consignee}}
+<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text>{{item.mobile}}
+</view>
+
+<view class="ui-list-item-time">
+  
+  <p>{{item.address}} </p>
+<p class="ui-list-item-del" data-id="{{index}}" bindtap="delAddress" >删除</p></view>
+<view class="separate"></view>
+</view>
+</view>
+</scroll-view>
+<view class="add-address" bindtap="addAddress">
+  <button class="cu-btn bg-grey lg">新增地址</button>
+</view>
