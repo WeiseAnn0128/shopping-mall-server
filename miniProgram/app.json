@@ -13,7 +13,8 @@
     "pages/goods/goodslist/goodslist",
     "pages/about/order/details/details",
     "pages/basics/msg/msg",
-    "pages/basics/msg/detailmsg/detailmsg"
+    "pages/basics/msg/detailmsg/detailmsg",
+    "pages/about/address/address"
   ],
   "window": {
     "backgroundTextStyle": "light",
