@@ -127,7 +127,14 @@ Component({
     },
     methods: {
       searchIt(e) {
-        
+        wx.navigateTo({
+          url:"../basics/search/search"
+        })
+      },
+      tomsg: function(){
+        wx.navigateTo({
+          url: '/pages/basics/msg/msg',
+        })
       }
     },
     NavChange(e) {
@@ -143,5 +150,5 @@ Component({
         console.log(data)
       }, 'post', true);
     }
-    
+
 })

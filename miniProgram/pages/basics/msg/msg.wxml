@@ -1,0 +1,20 @@
+<!--pages/msg/msg.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">消息</view></cu-custom>
+<view class="user_content">
+  <!--表头-->
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius" >
+    <view class="cu-item arrow" wx:for="{{items}}" wx:key="{{index}}">
+      <navigator class="content" url="/pages/basics/msg/detailmsg/detailmsg?contacts={{index}}" hover-class="none">
+        <text class="text-grey">{{item.name}}</text>
+      </navigator>
+    </view>
+  </view>
+  <!-- <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow"  bindtap="test">
+      <view class="content">
+        <text class="text-grey">GitHub</text>
+      </view>
+    </view>
+  </view> -->
+</view>
