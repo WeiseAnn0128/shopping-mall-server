@@ -10,8 +10,10 @@
     "pages/category/category",
     "pages/goods/collect/collect",
     "pages/goods/goods_detail/goods",
-    "pages/goods/goodslist/goodslist"
-
+    "pages/goods/goodslist/goodslist",
+    "pages/about/order/details/details",
+    "pages/basics/msg/msg",
+    "pages/basics/msg/detailmsg/detailmsg"
   ],
   "window": {
     "backgroundTextStyle": "light",
