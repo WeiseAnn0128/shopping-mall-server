@@ -1,0 +1,31 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="content" class="cu_ad">我的收货地址</view>
+</cu-custom>
+<view wx:if="{{false}}" class="addrss-none">
+  <view class="none-content">
+    <image src="url"></image>
+    <text class="txt">请添加地址</text>
+  </view>
+</view>
+<!-- 地址列表 -->
+<view  wx:else class="address-list">
+  <view class="address-item" wx:for="{{addressList}}">
+      <view class="item-top">{{item.name}} {{item.mobile}}</view>
+      <view class="item-content">{{item.address}} {{item.street}}</view>
+      <view class="item-bottom">
+      <view class="left" bindtap="clickDefault" data-index="{{index}}">
+          <icon type="{{item.isDefault?'success' : 'circle'}}" size="15"></icon> 
+           默认地址
+      </view>
+      <view class="right">
+        <view class="text" bindtap="clickDelete" data-index="{{index}}">删除</view>
+        </view>
+      </view>
+  </view>
+</view>
+<view class="add-address" bindtap="clickAdd">  
+      <button class="add" >
+        <text>+添加收货地址</text>
+      </button>   
+</view>
+
