@@ -130,6 +130,11 @@ Component({
         wx.navigateTo({
           url:"../basics/search/search"
         })
+      },
+      tomsg: function(){
+        wx.navigateTo({
+          url: '/pages/basics/msg/msg',
+        })
       }
     },
     NavChange(e) {
