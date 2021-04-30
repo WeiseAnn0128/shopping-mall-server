@@ -1,0 +1,33 @@
+
+.weui-cells:before{
+
+  top:0;
+
+  border-top:1rpx solid white;
+
+  }
+
+.weui-cell{
+
+  line-height: 3.5rem;
+
+}
+
+.weui-cells:after{
+
+  bottom:0;border-bottom:1rpx solid white
+
+}
+
+  
+
+.weui-btn{
+  background: rgb(108, 201, 155);
+  width: 80%;
+  color:black;
+}
+
+.cu-btn bg-grey
+{
+  margin-left:50px;
+}
