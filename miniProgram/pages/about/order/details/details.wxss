@@ -1,0 +1,88 @@
+
+.address{
+	background-color: #fff;
+	font-size: 10px;
+}
+.delivery{
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+	border-bottom: 2px solid #f6f6f6;
+}
+.delivery text:nth-child(1){
+	color: #666;
+}
+.address-info{
+	display: flex;
+	justify-content: space-between;
+	padding: 15px;
+}
+.address-info text:nth-child(1){
+	color: #666;
+	width: 50%;
+}
+
+.goods-list{
+	background-color: #fff;
+	margin: 15px 10px;
+	border-radius: 10px;
+	font-size: 10px;
+}
+.goods-item{
+	display: flex;
+	flex-direction: row;
+	padding: 15px 8px;
+	border-bottom: 2rpx solid #f6f6f6;
+}
+.goods-item image{
+  height: 220rpx;
+	width: 210rpx;
+	margin-right: 50rpx;
+}
+
+.goods-title{
+	display: flex;
+	flex-direction: column;
+}
+.goods-title text:nth-child(1){
+	font-weight: bold;
+}
+.goods-title text:nth-child(2){
+	color: #999;
+	font-size: 10px;
+}
+.goods-sale{
+	display: flex;
+	justify-content: column;
+}
+.goods-price text:nth-child(1){
+	color: #f00;
+	font-size: 10px;
+	margin-right: 1px;
+}
+.goods-total{
+	padding: 20px 15px;
+}
+.g-t-item{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+.total-price{
+	color: #f00;
+	font-weight: bold;
+}
+.goods-info{
+	background-color: #fff;
+	margin: 2px 2px;
+	border-radius: 15px;
+	font-size: 10px;
+}
+.content1{
+	display:flex;
+	flex-direction: row;
+ justify-content: flex-end;
+}
+
+
+
