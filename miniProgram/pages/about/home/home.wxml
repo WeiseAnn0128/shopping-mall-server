@@ -67,6 +67,12 @@
         <text class="text-grey">我的积分</text>
       </navigator>
     </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/question/question" hover-class="none">
+        <text class="text-grey">常见问题解答</text>
+      </navigator>
+    </view>
   </view>
   <view class="cu-tabbar-height"></view>
 </scroll-view>
