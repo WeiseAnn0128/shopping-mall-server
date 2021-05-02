@@ -15,7 +15,8 @@
     "pages/about/order/details/details",
     "pages/basics/msg/msg",
     "pages/basics/msg/detailmsg/detailmsg",
-    "pages/about/question/question"
+    "pages/about/question/question",
+    "pages/about/orders/orders"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -55,5 +55,10 @@ Component({
         url: e.currentTarget.dataset.target,
       })
     },
+    jump(e){
+      wx.navigateTo({
+        url: '/pages/about/orders/orders',
+      })
+    }
   },
 })
