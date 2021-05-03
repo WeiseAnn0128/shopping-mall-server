@@ -56,16 +56,6 @@ public class SysUser extends BaseEntity
     /** 用户头像 */
     private String avatar;
 
-    /**国家*/
-    private String country;
-
-    /**省份*/
-    private String province;
-
-    /**市区*/
-    private String city;
-
-
     /** 密码 */
     private String password;
 
@@ -209,30 +199,6 @@ public class SysUser extends BaseEntity
         this.avatar = avatar;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
 	@JsonIgnore
     @JsonProperty
     public String getPassword()
@@ -358,9 +324,6 @@ public class SysUser extends BaseEntity
             .append("updateTime", getUpdateTime())
             .append("remark", getRemark())
             .append("dept", getDept())
-            .append("country", getCountry())
-            .append("province", getProvince())
-            .append("city", getCity())
             .toString();
     }
 }

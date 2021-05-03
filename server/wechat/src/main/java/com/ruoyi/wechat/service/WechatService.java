@@ -1,5 +1,7 @@
 package com.ruoyi.wechat.service;
 
+import com.ruoyi.common.core.domain.entity.SysUser;
+
 public interface WechatService {
 
     /**
