@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/index/index",
     "pages/about/login/login",
     "pages/about/wallet/wallet",
@@ -14,7 +15,8 @@
     "pages/about/order/details/details",
     "pages/basics/msg/msg",
     "pages/basics/msg/detailmsg/detailmsg",
-    "pages/about/address/address"
+    "pages/about/address/address",
+    "pages/about/question/question"
   ],
   "window": {
     "backgroundTextStyle": "light",
