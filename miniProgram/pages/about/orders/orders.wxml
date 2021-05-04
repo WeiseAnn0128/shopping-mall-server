@@ -1,7 +1,4 @@
-<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">我的订单</view>
-</cu-custom>
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">我的订单</view></cu-custom>
 
 <view class="cu-bar tabbar bg-white shadow top swiper-tab">
   <block wx:for="{{swipertab}}" wx:key="sptab">
@@ -21,7 +18,7 @@
         </view>
         <view class="orderListDetails">
           <view class="productImg">
-            <image src="{{item.url}}" background-size="cover" style="height:150rpx"></image>
+            <image src="{{item.url}}" background-size="cover"></image>
           </view>
           <view class="productInfo">
             <view class="productTitle">{{item.description}}</view>
