@@ -15,4 +15,9 @@ public class LogisticsServiceImpl implements LogisticsService {
     public Logistics findByNu(String nu) {
         return null;
     }
+
+    @Override
+    public Logistics findCom(String com) {
+        return null;
+    }
 }

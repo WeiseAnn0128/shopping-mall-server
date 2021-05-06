@@ -6,4 +6,6 @@ public interface LogisticsService {
     Logistics findByAppcode(String appcode);
 
     Logistics findByNu(String nu);
+
+    Logistics findCom(String com);
 }
