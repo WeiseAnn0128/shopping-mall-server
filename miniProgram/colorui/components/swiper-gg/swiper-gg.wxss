@@ -1,0 +1,102 @@
+.hover{
+  position: fixed;
+  top:0rpx;
+  left: 0rpx;
+  width: 750rpx;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 100;
+  float: left;
+}
+
+.notice{
+  background-color: white;
+  margin: 10rpx 0;
+  width: 690rpx;
+  height: 40rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  float: left;
+}
+.notice image{
+  width:40rpx;
+  float: left;
+}
+.notice .notice_swiper{
+  float: left;
+  height: 40rpx;
+  margin: 0 0 0 20rpx;
+  width: 590rpx;
+}
+.notice .notice_swiper text{
+  display: block;
+  font-size: 28rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.notice:active{
+  background-color: rgb(244, 244, 244);/*一个冒号，加active，代表点击时的样式*/
+}
+.notice image:last-child{
+  width:30rpx;
+  opacity:0.7;
+  margin-right:-20rpx;
+}
+
+.show_notice{
+  position: fixed;
+  top:300rpx;
+  left:50rpx;
+  width: 650rpx;
+  z-index: 101;
+  border-radius: 20rpx;
+}
+.notice_head{
+  float: left;
+  width:590rpx;
+  height: 80rpx;
+  background-color: rgb(60, 144, 255);
+  border-radius: 10rpx 10rpx 0 0;
+}
+.notice_head text{
+  display: block;
+  width: 590rpx;
+  height: 65rpx;
+  text-align: center;
+  font-size: 35rpx;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 30rpx;
+  padding:15rpx 0 0 15rpx;
+}
+.notice_body{
+  padding: 20rpx 30rpx;
+  width:590rpx;
+  background-color: white;
+  float: left;
+  border-radius: 0 0 10rpx 10rpx;
+}
+.notice_body text{
+  margin-bottom: 10rpx;
+  width: 590rpx;
+  display: block;
+  padding:15rpx 0;
+}
+.notice_exit{
+  float: left;
+  width: 650rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+}
+.notice_exit image{
+  width: 80rpx;
+}

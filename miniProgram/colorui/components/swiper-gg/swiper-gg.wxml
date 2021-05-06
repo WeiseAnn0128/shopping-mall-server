@@ -1,0 +1,23 @@
+
+<view class="notice" bindtap="fshow_notice">
+  <image src="gonggao.png" mode="widthFix"></image>
+  <swiper class="notice_swiper" vertical="true" circular="true" autoplay="true" 
+          interval="3000" duration="300">
+    <view wx:for="{{gonggao}}">
+      <swiper-item>
+        <text>{{item}}</text>
+      </swiper-item>
+    </view>
+  </swiper>
+  <image src="enter.png" mode="widthFix"></image>
+</view>
+
+
+<view class="hover" wx:if="{{show_hover}}" bindtap="fshow_notice"></view>
+
+<view class="show_notice" wx:if="{{ show_notice }}" bindtap="fshow_notice">
+  <view class="notice_head"><text>公告</text></view>
+  <view class="notice_body"  wx:for="{{ gonggao }}">{{item}}</view>
+  <view class="notice_exit"><image src="quxiao.png" mode="widthFix" /></view>
+  
+</view>
