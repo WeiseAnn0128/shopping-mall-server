@@ -130,8 +130,9 @@
              <text>合计：￥{{item.money}}</text>
           </view>
         </view>
-        <view class="cu-bar">
-          <button class="cu-btn round bg-olive" bindtap="goToPages" data-target="{{item.goToUrl}}">评价</button>
+        <view class="cu-bar flex padding-sm" style="flex-direction:row-reverse;justify-content:flex-start" >
+          <button class="cu-btn round bg-olive" style="width:auto; margin:0 0 0 10px" bindtap="goToPages" data-target="{{item.goToUrl}}">评价</button>
+          <button class="cu-btn round bg-olive" style="width:auto; margin:0 0 0 10px" data-target="{{item.goToUrl}}">确认收货</button>
         </view>
       </view>
     </scroll-view>
