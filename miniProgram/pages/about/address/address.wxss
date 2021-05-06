@@ -14,13 +14,19 @@
   align-items: center;
 }
 /* 地址列表 */
+.scroll{
+  height: 100vh;
+  
+}
 .address-item{
   display: flex;
   flex-direction: column;
-  padding: 20rpx 20rpx 20rpx 20rpx;
-  
+  padding: 20rpx 20rpx 18rpx 20rpx;
+  margin-bottom:16rpx ;
+  margin-top:18rpx ;
   border-radius:16rpx ;
   background: white;
+
 }
 .item-top{
   font-size: 29rpx;  
