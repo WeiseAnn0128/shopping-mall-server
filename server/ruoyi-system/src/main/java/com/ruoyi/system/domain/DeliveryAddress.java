@@ -6,7 +6,7 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * 增删查改对象 delivery_address
+ * 用户地址管理对象 delivery_address
  * 
  * @author lslwypjjz
  * @date 2021-05-06

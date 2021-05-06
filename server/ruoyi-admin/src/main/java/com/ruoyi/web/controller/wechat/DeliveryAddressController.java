@@ -21,7 +21,7 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * 增删查改Controller
+ * 用户地址管理Controller
  * 
  * @author lslwypjjz
  * @date 2021-05-06
@@ -34,7 +34,7 @@ public class DeliveryAddressController extends BaseController
     private IDeliveryAddressService deliveryAddressService;
 
     /**
-     * 查询增删查改列表
+     * 查询用户地址管理列表
      */
     @PreAuthorize("@ss.hasPermi('system:address:list')")
     @GetMapping("/list")
@@ -46,20 +46,20 @@ public class DeliveryAddressController extends BaseController
     }
 
     /**
-     * 导出增删查改列表
+     * 导出用户地址管理列表
      */
     @PreAuthorize("@ss.hasPermi('system:address:export')")
-    @Log(title = "增删查改", businessType = BusinessType.EXPORT)
+    @Log(title = "用户地址管理", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(DeliveryAddress deliveryAddress)
     {
         List<DeliveryAddress> list = deliveryAddressService.selectDeliveryAddressList(deliveryAddress);
         ExcelUtil<DeliveryAddress> util = new ExcelUtil<DeliveryAddress>(DeliveryAddress.class);
-        return util.exportExcel(list, "增删查改数据");
+        return util.exportExcel(list, "用户地址管理数据");
     }
 
     /**
-     * 获取增删查改详细信息
+     * 获取用户地址管理详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:address:query')")
     @GetMapping(value = "/{addressId}")
@@ -69,10 +69,10 @@ public class DeliveryAddressController extends BaseController
     }
 
     /**
-     * 新增增删查改
+     * 新增用户地址管理
      */
     @PreAuthorize("@ss.hasPermi('system:address:add')")
-    @Log(title = "增删查改", businessType = BusinessType.INSERT)
+    @Log(title = "用户地址管理", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody DeliveryAddress deliveryAddress)
     {
@@ -80,10 +80,10 @@ public class DeliveryAddressController extends BaseController
     }
 
     /**
-     * 修改增删查改
+     * 修改用户地址管理
      */
     @PreAuthorize("@ss.hasPermi('system:address:edit')")
-    @Log(title = "增删查改", businessType = BusinessType.UPDATE)
+    @Log(title = "用户地址管理", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody DeliveryAddress deliveryAddress)
     {
@@ -91,10 +91,10 @@ public class DeliveryAddressController extends BaseController
     }
 
     /**
-     * 删除增删查改
+     * 删除用户地址管理
      */
     @PreAuthorize("@ss.hasPermi('system:address:remove')")
-    @Log(title = "增删查改", businessType = BusinessType.DELETE)
+    @Log(title = "用户地址管理", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{addressIds}")
     public AjaxResult remove(@PathVariable Long[] addressIds)
     {
