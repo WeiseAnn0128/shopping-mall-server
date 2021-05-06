@@ -19,6 +19,13 @@ function request(url, data, callBack, method = 'post', isShowLoading = false) {
         const func = callbackArr.splice(index, 1)[0];
         func();
       }
+    })
+    .catch(function() {
+      wx.showToast({
+        title: '登录失败，请联系管理员',
+        icon: 'none',
+        duration: 3000
+      })
     });
   }
 }
@@ -38,10 +45,19 @@ function request0(url, data, callBack, method, isShowLoading) {
     },
     method: method,
     success: function(res) {
-      callBack(res.data)
+      if (res.data.code == 200) {
+        callBack(res.data)
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none'
+        })
+      }
     },
-    complete: function() {
-      wx.hideToast();
+    complete: function(res) {
+      if (res.statusCode != 200) {
+        wx.hideToast();
+      }
     }
   })
 }
