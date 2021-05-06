@@ -27,7 +27,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2021-04-25
  */
 @RestController
-@RequestMapping("/mydemo/secondclass")
+@RequestMapping("/system/secondclass")
 public class SecondclassController extends BaseController
 {
     @Autowired
@@ -36,7 +36,7 @@ public class SecondclassController extends BaseController
     /**
      * 查询second列表
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:list') or @ss.hasRole('wechat')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:list') or @ss.hasRole('wechat')")
     @GetMapping("/list")
     public TableDataInfo list(Secondclass secondclass)
     {
@@ -48,7 +48,7 @@ public class SecondclassController extends BaseController
     /**
      * 导出second列表
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:export')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:export')")
     @Log(title = "second", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(Secondclass secondclass)
@@ -61,7 +61,7 @@ public class SecondclassController extends BaseController
     /**
      * 获取second详细信息
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:query')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -71,7 +71,7 @@ public class SecondclassController extends BaseController
     /**
      * 新增second
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:add')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:add')")
     @Log(title = "second", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Secondclass secondclass)
@@ -82,7 +82,7 @@ public class SecondclassController extends BaseController
     /**
      * 修改second
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:edit')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:edit')")
     @Log(title = "second", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Secondclass secondclass)
@@ -93,7 +93,7 @@ public class SecondclassController extends BaseController
     /**
      * 删除second
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:secondclass:remove')")
+    @PreAuthorize("@ss.hasPermi('system:secondclass:remove')")
     @Log(title = "second", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)
