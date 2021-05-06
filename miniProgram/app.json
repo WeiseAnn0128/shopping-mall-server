@@ -7,7 +7,9 @@
     "pages/about/logistics/logistics",
     "pages/about/personinfo/personinfo",
     "pages/about/collect/collect",
-    "pages/basics/search/search"
+    "pages/basics/search/search",
+    "pages/about/questions",
+    "pages/about/question"
   ],
   "window": {
     "backgroundTextStyle": "light",
