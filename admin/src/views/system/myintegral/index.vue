@@ -44,38 +44,6 @@
     </el-form>
 
    <el-row :gutter="10" class="mb8">
-<!--      <el-col :span="1.5">
-        <el-button
-          type="primary"
-          plain
-          icon="el-icon-plus"
-          size="mini"
-          @click="handleAdd"
-          v-hasPermi="['system:myintegral:add']"
-        >新增</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="success"
-          plain
-          icon="el-icon-edit"
-          size="mini"
-          :disabled="single"
-          @click="handleUpdate"
-          v-hasPermi="['system:myintegral:edit']"
-        >修改</el-button>
-      </el-col>
-      <el-col :span="1.5">
-        <el-button
-          type="danger"
-          plain
-          icon="el-icon-delete"
-          size="mini"
-          :disabled="multiple"
-          @click="handleDelete"
-          v-hasPermi="['system:myintegral:remove']"
-        >删除</el-button>
-      </el-col> -->
       <el-col :span="1.5">
         <el-button
           type="warning"
@@ -93,13 +61,13 @@
       <el-table-column type="selection" width="55" align="center" />
       <el-table-column label="用户名称" align="center" prop="userName" />
       <el-table-column label="改变积分" align="center" prop="changeIntegral" />
-      <el-table-column label="消费或增加积分的时间" align="center" prop="changeTime" width="180">
+      <el-table-column label="时间" align="center" prop="changeTime" width="180">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.changeTime, '{y}-{m}-{d}') }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="获取积分的方式" align="center" prop="consumptionType" />
-      <el-table-column label="积分是增加还是减少" align="center" prop="changeType" />
+      <el-table-column label="获取方式" align="center" prop="consumptionType" />
+      <el-table-column label="积分增减" align="center" prop="changeType" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
