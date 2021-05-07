@@ -12,10 +12,15 @@ Page({
       { name: '全部', index: 0 }, { name: '待付款', index: 1 }, { name: '待发货', index: 2 }, { name: '待收货', index: 3 }, { name: '待评价', index: 4}],
     
     Order: [
-      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122" },
-      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122" }
+      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122" ,goToUrl: "/pages/about/comment/comment?type=0"},
+      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122",goToUrl: "/pages/about/comment/comment?type=1" }
     ],
   
+  },
+  goToPages(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.target,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
