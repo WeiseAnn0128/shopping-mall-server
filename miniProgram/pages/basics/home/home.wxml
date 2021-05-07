@@ -12,6 +12,9 @@
   <input class="text-search" maxlength="10" placeholder="请输入搜索内容" bindinput="onNameInput"/>
   <text class="searchIt" bindtap="searchIt">搜索</text>
 </view>
+<view class="gonggao">
+  <swiper-gg gonggao="{{list1}}"/>
+</view>
 <!--轮播分类导航-->
 <view>
   <swiper indicator-dots="true" 

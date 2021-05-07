@@ -39,7 +39,7 @@
   .categoryList{
     width: 100%;
     height: 350rpx;
-    margin-top: 150rpx;
+    margin-top: 90rpx;
     
   }
   .category-info{
@@ -130,4 +130,9 @@
     height:50px;
     width: 50px;
     border-radius: 100%;
+  }
+  .gonggao{
+    width: 100%;
+    height: 1px;
+    margin-top: 115rpx;
   }
