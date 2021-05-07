@@ -17,7 +17,7 @@
       <text class="cuIcon-title text-orange "> </text>我的订单
     </view>
     <view class="action">
-      <navigator url="/pages/about/order/order" hover-class="none">
+      <navigator url="/pages/about/orders/orders" hover-class="none">
         <text class="cu-btn bg-clear shadow">查看全部订单></text>
       </navigator>
     </view>
@@ -65,6 +65,18 @@
     <view class="cu-item arrow">
       <navigator class="content" url="/pages/about/point/point" hover-class="none">
         <text class="text-grey">我的积分</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/address/address" hover-class="none">
+        <text class="text-grey">我的收货地址</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/question/question" hover-class="none">
+        <text class="text-grey">常见问题解答</text>
       </navigator>
     </view>
   </view>

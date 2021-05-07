@@ -13,25 +13,25 @@ Component({
       color: 'green',
       badge: 120,
       name: '待付款',
-      url: "/pages/about/order/order?type=0"
+      url: "/pages/about/orders/orders?type=0"
     }, {
       icon: 'send',
       color: 'green',
       badge: 1,
       name: '待发货',
-      url: "/pages/about/order/order?type=1"
+      url: "/pages/about/orders/orders?type=1"
     }, {
       icon: 'deliver',
       color: 'green',
       badge: 0,
       name: '待收货',
-      url: "/pages/about/order/order?type=2"
+      url: "/pages/about/orders/orders?type=2"
     }, {
       icon: 'comment',
       color: 'green',
       badge: 22,
       name: '待评价',
-      url: "/pages/about/order/order?type=3"
+      url: "/pages/about/orders/orders?type=3"
     }, {
       icon: 'refund',
       color: 'green',
@@ -55,5 +55,10 @@ Component({
         url: e.currentTarget.dataset.target,
       })
     },
+    jump(e){
+      wx.navigateTo({
+        url: '/pages/about/orders/orders',
+      })
+    }
   },
 })

@@ -37,6 +37,12 @@ Component({
         curIndex:index
       })
     },
+    tiaozhuan:function(e){
+      var title=e.currentTarget.dataset.name
+      wx.navigateTo ({
+        url:'../goods/goodslist/goodslist?jsonStr='+title
+      })
+    }
   },
   attached: function() {
     var that=this
@@ -62,6 +68,5 @@ Component({
       }
       console.log(res)
     }, 'GET', true);
-  }
-  
+  },
 })
