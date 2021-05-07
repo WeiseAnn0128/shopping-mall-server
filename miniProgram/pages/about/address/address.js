@@ -109,7 +109,7 @@ Page({
 //添加点击
   clickAdd(e){
   wx.navigateTo({
-    url: 'url',
+    url: '/pages/about/ad-address/ad-address',
   })
   }
 })

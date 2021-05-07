@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.GoodsDetailMapper">
+    
+    <resultMap type="GoodsDetail" id="GoodsDetailResult">
+        <result property="id"    column="id"    />
+        <result property="goodsId"    column="goods_id"    />
+        <result property="goodsName"    column="goods_name"    />
+        <result property="goodsPrice"    column="goods_price"    />
+        <result property="topImg"    column="top_img"    />
+        <result property="detailImg"    column="detail_img"    />
+    </resultMap>
+
+    <sql id="selectGoodsDetailVo">
+        select id, goods_id, goods_name, goods_price, top_img, detail_img from goods_detail
+    </sql>
+
+    <select id="selectGoodsDetailList" parameterType="GoodsDetail" resultMap="GoodsDetailResult">
+        <include refid="selectGoodsDetailVo"/>
+        <where>  
+            <if test="goodsId != null "> and goods_id = #{goodsId}</if>
+            <if test="goodsName != null  and goodsName != ''"> and goods_name like concat('%', #{goodsName}, '%')</if>
+            <if test="goodsPrice != null  and goodsPrice != ''"> and goods_price = #{goodsPrice}</if>
+            <if test="topImg != null  and topImg != ''"> and top_img = #{topImg}</if>
+            <if test="detailImg != null  and detailImg != ''"> and detail_img = #{detailImg}</if>
+        </where>
+    </select>
+    
+    <select id="selectGoodsDetailById" parameterType="Long" resultMap="GoodsDetailResult">
+        <include refid="selectGoodsDetailVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertGoodsDetail" parameterType="GoodsDetail">
+        insert into goods_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="goodsId != null">goods_id,</if>
+            <if test="goodsName != null">goods_name,</if>
+            <if test="goodsPrice != null">goods_price,</if>
+            <if test="topImg != null">top_img,</if>
+            <if test="detailImg != null">detail_img,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="goodsName != null">#{goodsName},</if>
+            <if test="goodsPrice != null">#{goodsPrice},</if>
+            <if test="topImg != null">#{topImg},</if>
+            <if test="detailImg != null">#{detailImg},</if>
+         </trim>
+    </insert>
+
+    <update id="updateGoodsDetail" parameterType="GoodsDetail">
+        update goods_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="goodsId != null">goods_id = #{goodsId},</if>
+            <if test="goodsName != null">goods_name = #{goodsName},</if>
+            <if test="goodsPrice != null">goods_price = #{goodsPrice},</if>
+            <if test="topImg != null">top_img = #{topImg},</if>
+            <if test="detailImg != null">detail_img = #{detailImg},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteGoodsDetailById" parameterType="Long">
+        delete from goods_detail where id = #{id}
+    </delete>
+
+    <delete id="deleteGoodsDetailByIds" parameterType="String">
+        delete from goods_detail where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

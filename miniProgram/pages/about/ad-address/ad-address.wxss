@@ -1,0 +1,11 @@
+.cu-form-group input{
+ font-size:27rpx ;
+}
+.gps{
+  display: flex;
+  flex-direction: column;
+}
+.cu-tag round{
+  border :solid 5px red; 
+  border-color: transparent 
+}
