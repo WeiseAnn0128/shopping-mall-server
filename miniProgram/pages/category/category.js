@@ -46,14 +46,14 @@ Component({
   },
   attached: function() {
     var that=this
-    network.request('mydemo/firstclass/list', {}, function(res) {
+    network.request('system/firstclass/list', {}, function(res) {
       console.log(res.rows)
       that.setData({
            cateItems:res.rows,
       }) 
       console.log(res)
     }, 'GET', true);
-    network.request('mydemo/secondclass/list', {}, function(res) {
+    network.request('system/secondclass/list', {}, function(res) {
       console.log(res.rows)
       that.setData({
         children:res.rows,
