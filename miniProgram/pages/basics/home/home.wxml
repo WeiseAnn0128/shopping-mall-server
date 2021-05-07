@@ -4,8 +4,16 @@
 
 <!--搜索框-->
 <view class="container-search">
+  <view class="UCenter-bg " style="width: 100rpx; height: 80rpx; display: block; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
+    <view class="text-xl" bindtap="tomsg">
+          <image src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic.51yuansu.com%2Fpic3%2Fcover%2F00%2F93%2F38%2F58dc7ee984cde_610.jpg&refer=http%3A%2F%2Fpic.51yuansu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622273275&t=013b955826ffe4441c1af34d7d074b3a" class="png" mode="widthFix" style="position: relative; left: 15rpx; top: 3rpx"></image>
+    </view>
+  </view>
   <input class="text-search" maxlength="10" placeholder="请输入搜索内容" bindinput="onNameInput"/>
   <text class="searchIt" bindtap="searchIt">搜索</text>
+</view>
+<view class="gonggao">
+  <swiper-gg gonggao="{{list1}}"/>
 </view>
 <!--轮播分类导航-->
 <view>

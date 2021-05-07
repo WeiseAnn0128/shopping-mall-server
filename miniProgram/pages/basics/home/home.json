@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "swiper-gg":"/colorui/components/swiper-gg/swiper-gg"
+  }
 }

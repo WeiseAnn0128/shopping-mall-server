@@ -1,4 +1,6 @@
 // miniProgram/pages/basics/home/home.js
+
+const network = require('../../../utils/network.js')
 Component({
 
     /**
@@ -110,7 +112,8 @@ Component({
             newprice: "348.00",
             oldprice: "396.00",
           }
-        ]
+        ],
+        list1:[]
 
     },
 
@@ -122,15 +125,48 @@ Component({
         var that = this;  
         //加载福利专场
         // that.newGoodsShow();
-
     },
-
+    methods: {
+      listNotice: function () {
+        var lis=[]
+        network.request('system/notice/list', {}, (res)=> {
+          console.log(res)
+          for(var i in res.rows){
+            var str=res.rows[i].noticeContent
+            var last=str.lastIndexOf("<")
+            str=res.rows[i].noticeTitle+":"+str.substring(3,last)
+            console.log(str)
+            lis.push(str)
+          }
+            this.setData({
+              list1:lis
+            })
+        }, 'get', true);
+      },
+      searchIt(e) {
+        wx.navigateTo({
+          url:"../basics/search/search"
+        })
+      },
+      tomsg: function(){
+        wx.navigateTo({
+          url: '/pages/basics/msg/msg',
+        })
+      }
+    },
     NavChange(e) {
       this.setData({
         PageCur: e.currentTarget.dataset.cur
       })
     },
+    attached: function() {
+      network.request('wechat/test', {}, function(data) {
+        console.log(data)
+      }, 'post', true);
+      network.request('wechat/test', {}, function(data) {
+        console.log(data)
+      }, 'post', true);
+      this.listNotice();
+    }
 
-
-    
 })

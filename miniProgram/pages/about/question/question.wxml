@@ -1,0 +1,25 @@
+<!--pages/about/question/question.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">常见问题解答</view>
+</cu-custom>
+<view class="cu-bar bg-white search fixed" style="top:60px">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索icon" confirm-type="search" bindinput="searchIcon"></input>
+  </view>
+</view>
+<view class="solids-bottom padding-xs flex align-center" style="top:40px" wx:for="{{QuestionAndAnswerList}}" wx:key="index">
+    <view class="flex-sub ">
+      <view class="solid-bottom text-lg bg-white ">
+        <view class="flex solid-bottom padding justify-between">
+          <text class="text-black">{{index+1}}、{{item.question}}</text>
+          <view class="radius" bindtap="hit" data-index="{{index}}" animation="{{item.animation}}"> 
+            <text class="cuIcon-fold xs text-black padding"></text>
+          </view>
+        </view>
+      </view>
+      <view class="solid-bottom padding bg-greyLight {{item.flg ? 'show' : 'hidden'}}" hidden="{{item.initFlg}}">答：{{item.answer}}</view>
+    </view>
+  </view>
+  

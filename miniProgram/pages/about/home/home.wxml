@@ -4,7 +4,7 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg ">
     <view class="text-xl">
-        <navigator class="content" url="/pages/about/edit/edit" hover-class="none">
+        <navigator class="content" url="/pages/about/personinfo/personinfo" hover-class="none">
           <image src="/images/tabbar/headf.png" class="png" mode="widthFix"></image>
         </navigator>
         <text class="text-df" style="font-size:14px">昵称</text>
@@ -12,12 +12,12 @@
   </view>
 
 <view class="cu-list card-menu margin-top-x2 margin-bottom-x2 shadow-lg radius">
-<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
       <text class="cuIcon-title text-orange "> </text>我的订单
     </view>
     <view class="action">
-      <navigator url="/pages/about/order/order" hover-class="none">
+      <navigator url="/pages/about/orders/orders" hover-class="none">
         <text class="cu-btn bg-clear shadow">查看全部订单></text>
       </navigator>
     </view>
@@ -42,6 +42,11 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/wallet/wallet" hover-class="none">
+        <text class="text-grey">钱包</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
       <navigator class="content" url="/pages/about/shop/shop" hover-class="none">
         <text class="text-grey">订阅店铺</text>
       </navigator>
@@ -57,6 +62,23 @@
       </navigator>
     </view>
     
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/point/point" hover-class="none">
+        <text class="text-grey">我的积分</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/address/address" hover-class="none">
+        <text class="text-grey">我的收货地址</text>
+      </navigator>
+    </view>
+
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/about/question/question" hover-class="none">
+        <text class="text-grey">常见问题解答</text>
+      </navigator>
+    </view>
   </view>
   <view class="cu-tabbar-height"></view>
 </scroll-view>
