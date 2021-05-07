@@ -17,7 +17,7 @@
       <text class="cuIcon-title text-orange "> </text>我的订单
     </view>
     <view class="action">
-      <navigator url="/pages/about/order/order" hover-class="none">
+      <navigator url="/pages/about/orders/orders" hover-class="none">
         <text class="cu-btn bg-clear shadow">查看全部订单></text>
       </navigator>
     </view>
