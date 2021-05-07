@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.DeliveryAddressMapper">
+    
+    <resultMap type="DeliveryAddress" id="DeliveryAddressResult">
+        <result property="addressId"    column="address_id"    />
+        <result property="userName"    column="user_name"    />
+        <result property="userPhone"    column="user_phone"    />
+        <result property="province"    column="province"    />
+        <result property="city"    column="city"    />
+        <result property="district"    column="district"    />
+        <result property="userAddress"    column="user_address"    />
+        <result property="isdefault"    column="isDefault"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+
+    <sql id="selectDeliveryAddressVo">
+        select address_id, user_name, user_phone, province, city, district, user_address, isDefault, create_time from delivery_address
+    </sql>
+
+    <select id="selectDeliveryAddressList" parameterType="DeliveryAddress" resultMap="DeliveryAddressResult">
+        <include refid="selectDeliveryAddressVo"/>
+        <where>  
+            <if test="userPhone != null  and userPhone != ''"> and user_phone = #{userPhone}</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+            <if test="city != null  and city != ''"> and city = #{city}</if>
+            <if test="district != null  and district != ''"> and district = #{district}</if>
+            <if test="userAddress != null  and userAddress != ''"> and user_address = #{userAddress}</if>
+            <if test="isdefault != null "> and isDefault = #{isdefault}</if>
+        </where>
+    </select>
+    
+    <select id="selectDeliveryAddressById" parameterType="Long" resultMap="DeliveryAddressResult">
+        <include refid="selectDeliveryAddressVo"/>
+        where address_id = #{addressId}
+    </select>
+        
+    <insert id="insertDeliveryAddress" parameterType="DeliveryAddress" useGeneratedKeys="true" keyProperty="addressId">
+        insert into delivery_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">user_name,</if>
+            <if test="userPhone != null and userPhone != ''">user_phone,</if>
+            <if test="province != null and province != ''">province,</if>
+            <if test="city != null and city != ''">city,</if>
+            <if test="district != null and district != ''">district,</if>
+            <if test="userAddress != null and userAddress != ''">user_address,</if>
+            <if test="isdefault != null">isDefault,</if>
+            <if test="createTime != null">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">#{userName},</if>
+            <if test="userPhone != null and userPhone != ''">#{userPhone},</if>
+            <if test="province != null and province != ''">#{province},</if>
+            <if test="city != null and city != ''">#{city},</if>
+            <if test="district != null and district != ''">#{district},</if>
+            <if test="userAddress != null and userAddress != ''">#{userAddress},</if>
+            <if test="isdefault != null">#{isdefault},</if>
+            <if test="createTime != null">#{createTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDeliveryAddress" parameterType="DeliveryAddress">
+        update delivery_address
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userName != null">user_name = #{userName},</if>
+            <if test="userPhone != null and userPhone != ''">user_phone = #{userPhone},</if>
+            <if test="province != null and province != ''">province = #{province},</if>
+            <if test="city != null and city != ''">city = #{city},</if>
+            <if test="district != null and district != ''">district = #{district},</if>
+            <if test="userAddress != null and userAddress != ''">user_address = #{userAddress},</if>
+            <if test="isdefault != null">isDefault = #{isdefault},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+        </trim>
+        where address_id = #{addressId}
+    </update>
+
+    <delete id="deleteDeliveryAddressById" parameterType="Long">
+        delete from delivery_address where address_id = #{addressId}
+    </delete>
+
+    <delete id="deleteDeliveryAddressByIds" parameterType="String">
+        delete from delivery_address where address_id in 
+        <foreach item="addressId" collection="array" open="(" separator="," close=")">
+            #{addressId}
+        </foreach>
+    </delete>
+</mapper>
