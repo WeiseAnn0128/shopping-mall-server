@@ -2,14 +2,14 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="125px">
       <el-form-item label="一级分类编号" prop="cateId">
-				<el-select v-model="queryParams.cateId" size="small">
-				  <el-option
-				    v-for="item in cateIdone"
-				    :key="item.id"
-					:label="item.cateName"
-				    :value="item.cateId"
-				  />
-				</el-select>
+		<el-select v-model="queryParams.cateId" size="small">
+		  <el-option
+			v-for="item in cateIdone"
+			:key="item.id"
+			:label="item.cateName"
+			:value="item.cateId"
+		  />
+		</el-select>
       </el-form-item>
       <el-form-item label="二级分类商品名" prop="name">
         <el-input

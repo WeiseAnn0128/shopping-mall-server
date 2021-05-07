@@ -2,7 +2,6 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
       <el-form-item label="商品名" prop="cateName">
-
 		<el-select v-model="queryParams.cateName" size="small">
 		  <el-option
 		    v-for="item in cateIdone"
