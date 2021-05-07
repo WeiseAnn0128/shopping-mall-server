@@ -1,0 +1,84 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">买家已付款</view>
+</cu-custom>
+<view class="container">
+  <view class="address">
+    <view class="address-info">
+      <text>收货地址：</text>
+      <text>{{order.address_List.address.province + order.address_List.address.city + order.address_List.address.district}}</text>
+    </view>
+    <view class="delivery">
+      <text>收件人：</text>
+      <text>{{order.address_List.recipient_formation}}</text>
+    </view>
+  </view>
+  <view class="goods-list">
+    <!--商品分布细节处理-->
+    <view class="goods-item"  wx:for="{{order.goods_List}}" wx:for-item="goods" wx:key="order_id">
+      <image
+        src="{{goods.image}}">
+      </image>
+      <view class="goods-info">
+        <view class="goods-title">
+          <text style="font-size:12px;margin-bottom:5px">{{goods.good_name}}</text>
+          <text>{{goods.configuration}}</text>
+        </view>
+      </view>
+      <view class="goods-sale">
+          <view class="goods-price">
+            <text>{{goods.price}}</text>
+             <view style="text-align: right;margin-top:8px" class="goods-num">{{goods.good_num}}</view>
+          </view>
+        </view>
+    </view>
+      <view class="content1">
+          <view class="cu-btn round line-green" style="height:20px;">申请退款</view>
+          <view class="cu-btn round line-green" style="height:20px;">查看物流</view>
+          <view class="cu-btn round line-green" style="height:20px;">确认收货</view>
+        </view>
+    <view class="goods-total">
+      <view class="g-t-item">
+        <text>商品总价</text>
+        <text>{{order.total.prices}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>配送费</text>
+        <text>{{order.total.shipping_fee}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>实付金额</text>
+        <text class="total-price">{{order.total.Amount_paid}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="goods-info">
+    <view class="goods-total">
+      <view class="g-t-item">
+        <text>订单编号：</text>
+        <text>{{order.order_id}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>创建时间：</text>
+        <text>{{order.creation_time}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>付款时间：</text>
+        <text>{{order.time_of_payment}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>发货时间：</text>
+        <text>{{order.delivery_time}}</text>
+      </view>
+      <view class="g-t-item">
+        <text>支付方式：</text>
+        <text>{{order.mode_of_payment}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="padding flex flex-direction">
+    <button bindtap="tel" style="width: 100%" class="cu-btn bg-green lg">
+     联系平台
+    </button>
+  </view>
+</view>
