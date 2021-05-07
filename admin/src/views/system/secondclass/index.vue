@@ -2,13 +2,6 @@
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="125px">
       <el-form-item label="一级分类编号" prop="cateId">
-<!--        <el-input
-          v-model="queryParams.cateId"
-          placeholder="请输入一级分类编号"
-          clearable
-          size="small"
-          @keyup.enter.native="handleQuery"
-        /> -->
 				<el-select v-model="queryParams.cateId" size="small">
 				  <el-option
 				    v-for="item in cateIdone"
