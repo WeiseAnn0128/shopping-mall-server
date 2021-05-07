@@ -45,6 +45,9 @@
 			<view class="picker">
 				{{region[0]}}，{{region[1]}}，{{region[2]}}
 			</view>
+			<input style="display: none" name="province" value="{{region[0]}}" />
+			<input style="display: none" name="city" value="{{region[1]}}" />
+			<input style="display: none" name="district" value="{{region[2]}}" />
 		</picker>
 	</view>
 	<view class="cu-form-group">
