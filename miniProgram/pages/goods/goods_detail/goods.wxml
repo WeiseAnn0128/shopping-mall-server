@@ -92,9 +92,9 @@
         <ul class="productFooterlist" wx:for="{{parent.values}}"  wx:for-index='childindex' wx:for-item="child">
             <li data-name="{{child.isShow}}" class="{{child.isShow?'':'noneActive'}} {{subIndex[parentindex]==childindex?'productActive1':'productActive'}}" bindtap="choose_specification" data-parentindex="{{parentindex}}" data-childindex="{{childindex}}" data-pid="{{parent.pid}}" data-childid="{{child.id}}">{{child.name}}</li>
           </ul>
-        </view>
-        
+      </view>
     </view>  
+
   </view> 
     <!-- /*计数器*/ -->
   <view class="number-item">
@@ -105,7 +105,9 @@
         <view class="add" bindtap="addNumber">+</view>
       </view>
     </view>
-</view>  
+    <button class="cu-btn bg-orange margin-tb-sm lg" bindtap="jumpPay">确认</button>
+  </view>  
+  
 </view>
 
 

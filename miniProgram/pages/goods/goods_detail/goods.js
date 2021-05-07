@@ -268,6 +268,13 @@ Component({
     }
     result=result.trim().substr(1).trim()
     return result
+    },
+    jumpPay: function(e){
+      wx.navigateTo({
+        url: '/pages/goods/submit/submit',
+      })
+
     }
 }
+
 })
