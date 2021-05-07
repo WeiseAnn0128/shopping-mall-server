@@ -35,6 +35,9 @@ public class WechatLoginController {
         user.setUserId(userId);
         user.setNickName(map.get("nickName"));
         user.setSex(map.get("gender"));
+        user.setCountry(map.get("country"));
+        user.setProvince(map.get("province"));
+        user.setCity(map.get("city"));
         user.setAvatar( map.get("avatarUrl"));
 
         userService.updateUserProfile(user);
