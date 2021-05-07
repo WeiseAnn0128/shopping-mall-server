@@ -1,14 +1,22 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="125px">
       <el-form-item label="一级分类编号" prop="cateId">
-        <el-input
+<!--        <el-input
           v-model="queryParams.cateId"
           placeholder="请输入一级分类编号"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-        />
+        /> -->
+				<el-select v-model="queryParams.cateId" size="small">
+				  <el-option
+				    v-for="item in cateIdone"
+				    :key="item.id"
+					:label="item.cateName"
+				    :value="item.cateId"
+				  />
+				</el-select>
       </el-form-item>
       <el-form-item label="二级分类商品名" prop="name">
         <el-input
@@ -85,7 +93,15 @@
       <el-table-column label="二级分类编号" align="center" prop="id" />
       <el-table-column label="一级分类编号" align="center" prop="cateId" />
       <el-table-column label="二级分类商品名" align="center" prop="name" />
-      <el-table-column label="二级分类商品图片" align="center" prop="img" />
+      <el-table-column label="二级分类商品图片" align="center" prop="img" :show-overflow-tooltip="true">
+		  <template slot-scope="scope">
+			  <!-- <img :src="scope.row.img" height="50px"> -->
+			  <span>{{scope.row.img}}</span>
+		  </template>
+
+		  
+			
+	  </el-table-column>
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -120,11 +136,28 @@
         <el-form-item label="一级分类编号" prop="cateId">
           <el-input v-model="form.cateId" placeholder="请输入一级分类编号" />
         </el-form-item>
-        <el-form-item label="二级分类商品名" prop="name">
+        <el-form-item label="商品名" prop="name">
           <el-input v-model="form.name" placeholder="请输入二级分类商品名" />
         </el-form-item>
-        <el-form-item label="二级分类商品图片" prop="img">
+        <el-form-item label="商品图片" prop="img">
           <el-input v-model="form.img" placeholder="请输入二级分类商品图片" />
+		  
+<!-- 		  <el-upload
+		    ref="upload"
+		    :limit="1"
+		    accept=".jpg, .png"
+		    :action="upload.url"
+		    :headers="upload.headers"
+		    :file-list="upload.fileList"
+		    :on-progress="handleFileUploadProgress"
+		    :on-success="handleFileSuccess"
+		    :auto-upload="false">
+		    <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+		    <el-button style="margin-left: 10px;" size="small" type="success" :loading="upload.isUploading" @click="submitUpload">上传到服务器</el-button>
+		    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+		  </el-upload> -->
+		  
+		  
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -137,7 +170,8 @@
 
 <script>
 import { listSecondclass, getSecondclass, delSecondclass, addSecondclass, updateSecondclass, exportSecondclass } from "@/api/system/secondclass";
-
+import { listFirstclass, getFirstclass} from "@/api/system/firstclass";
+import { getToken } from "@/utils/auth";
 export default {
   name: "Secondclass",
   components: {
@@ -158,10 +192,13 @@ export default {
       total: 0,
       // 二级分类表格数据
       secondclassList: [],
+	  img:[],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
       open: false,
+		//一级分类编号字典
+		cateIdone:[],
       // 查询参数
       queryParams: {
         pageNum: 1,
@@ -170,6 +207,21 @@ export default {
         name: null,
         img: null
       },
+	  
+	  
+	  // 上传参数
+	  upload: {
+	    // 是否禁用上传
+	    isUploading: false,
+	    // 设置上传的请求头部
+	    headers: {},
+	    // 上传的地址
+	    url: "",
+	    // 上传的文件列表
+	    fileList: []
+	  },
+	  
+	  
       // 表单参数
       form: {},
       // 表单校验
@@ -179,6 +231,7 @@ export default {
   },
   created() {
     this.getList();
+	this.getcateId();
   },
   methods: {
     /** 查询二级分类列表 */
@@ -186,10 +239,16 @@ export default {
       this.loading = true;
       listSecondclass(this.queryParams).then(response => {
         this.secondclassList = response.rows;
+		console.log(this.secondclassList)
         this.total = response.total;
         this.loading = false;
       });
     },
+	getcateId(){
+		listFirstclass().then(response => {
+        this.cateIdone = response.rows;
+		});
+	},
     // 取消按钮
     cancel() {
       this.open = false;
@@ -283,7 +342,68 @@ export default {
         }).then(response => {
           this.download(response.msg);
         })
-    }
+    },
+	
+	 
+	//点击上传按钮后执行的方法
+		 async submitUpload(type) {
+	        this.upload.url =
+	          process.env.VUE_APP_BASE_API +
+	          "/后端接口地址/upload/file?id=" +
+	          this.id +
+	          "&type=" +
+	          type;
+	        // 此处在地址中传输了id和type两个参数，可以根据实际需要来更改
+	        await this.$refs.upload[type].submit();
+	        this.upload.fileList = [];
+	      },
+	      // 上传用到的http请求方法
+	       httpRequest(param) {
+	        let fileObj = param.file; // 相当于input里取得的files
+	        let fd = new FormData(); 
+	        fd.append("file", fileObj); // 文件对象
+	
+	        let url = this.upload.url;
+	        let config = {
+	          headers: {
+	            "Content-Type": "multipart/form-data",
+	            Authorization: "Bearer " + getToken()
+	          }
+	        };
+	        axios.post(url, fd, config).then(res => {
+	          if (res.status === 200) {
+	            this.getListFile();
+	          }
+	        });
+	      },
+	      // 文件上传中处理
+	      handleFileUploadProgress(event, file, fileList) {
+	        this.loading = this.$loading({
+	          lock: true,
+	          text: "上传中",
+	          background: "rgba(0, 0, 0, 0.7)",
+	        });
+	        this.upload.isUploading = true;
+	      },
+	      // 文件上传成功处理
+	      handleFileSuccess(response, file, fileList) {
+	        this.upload.isUploading = false;
+	        this.msgSuccess(response.msg);
+	        this.loading.close();
+	        this.upload.fileList = [];
+	      },
+	      //错误处理
+	      handleUploadError() {
+	        this.$message({
+	          type: "error",
+	          message: "上传失败",
+	        });
+	        this.loading.close();
+	      }
+
+  
+  
   }
+
 };
 </script>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wechat.scocer.mapper.MyintegralMapper">
+    
+    <resultMap type="Myintegral" id="MyintegralResult">
+        <result property="userName"    column="user_name"    />
+        <result property="changeIntegral"    column="change_integral"    />
+        <result property="changeTime"    column="change_time"    />
+        <result property="consumptionType"    column="consumption_type"    />
+        <result property="changeType"    column="change_type"    />
+    </resultMap>
+
+    <sql id="selectMyintegralVo">
+        select user_name, change_integral, change_time, consumption_type, change_type from myintegral
+    </sql>
+
+    <select id="selectMyintegralList" parameterType="Myintegral" resultMap="MyintegralResult">
+        <include refid="selectMyintegralVo"/>
+        <where>  
+            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="changeIntegral != null "> and change_integral = #{changeIntegral}</if>
+            <if test="changeTime != null "> and change_time = #{changeTime}</if>
+            <if test="consumptionType != null "> and consumption_type = #{consumptionType}</if>
+            <if test="changeType != null "> and change_type = #{changeType}</if>
+        </where>
+    </select>
+    
+    <select id="selectMyintegralById" parameterType="String" resultMap="MyintegralResult">
+        <include refid="selectMyintegralVo"/>
+        where user_name = #{userName}
+    </select>
+        
+    <insert id="insertMyintegral" parameterType="Myintegral">
+        insert into myintegral
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">user_name,</if>
+            <if test="changeIntegral != null">change_integral,</if>
+            <if test="changeTime != null">change_time,</if>
+            <if test="consumptionType != null">consumption_type,</if>
+            <if test="changeType != null">change_type,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">#{userName},</if>
+            <if test="changeIntegral != null">#{changeIntegral},</if>
+            <if test="changeTime != null">#{changeTime},</if>
+            <if test="consumptionType != null">#{consumptionType},</if>
+            <if test="changeType != null">#{changeType},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMyintegral" parameterType="Myintegral">
+        update myintegral
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="changeIntegral != null">change_integral = #{changeIntegral},</if>
+            <if test="changeTime != null">change_time = #{changeTime},</if>
+            <if test="consumptionType != null">consumption_type = #{consumptionType},</if>
+            <if test="changeType != null">change_type = #{changeType},</if>
+        </trim>
+        where user_name = #{userName}
+    </update>
+
+    <delete id="deleteMyintegralById" parameterType="String">
+        delete from myintegral where user_name = #{userName}
+    </delete>
+
+    <delete id="deleteMyintegralByIds" parameterType="String">
+        delete from myintegral where user_name in 
+        <foreach item="userName" collection="array" open="(" separator="," close=")">
+            #{userName}
+        </foreach>
+    </delete>
+</mapper>

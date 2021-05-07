@@ -1,7 +1,8 @@
 package com.ruoyi.wechat.category.service;
 
-import java.util.List;
 import com.ruoyi.wechat.category.domain.Firstclass;
+
+import java.util.List;
 
 /**
  * myfnService接口

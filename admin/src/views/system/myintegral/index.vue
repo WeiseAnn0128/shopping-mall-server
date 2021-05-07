@@ -1,21 +1,41 @@
 <template>
   <div class="app-container">
     <el-form :model="queryParams" ref="queryForm" :inline="true" v-show="showSearch" label-width="68px">
-      <el-form-item label="商品名" prop="cateName">
-   <!--     <el-input
-          v-model="queryParams.cateName"
-          placeholder="请输入一级分类商品名"
+      <el-form-item label="用户名称" prop="userName">
+        <el-input
+          v-model="queryParams.userName"
+          placeholder="请输入用户名称"
           clearable
           size="small"
           @keyup.enter.native="handleQuery"
-        /> -->
-		<el-select v-model="queryParams.cateName" size="small">
-		  <el-option
-		    v-for="item in cateIdone"
-		    :key="item.id"
-		    :value="item.cateName"
-		  />
-		</el-select>
+        />
+      </el-form-item>
+      <el-form-item label="改变积分" prop="changeIntegral">
+        <el-input
+          v-model="queryParams.changeIntegral"
+          placeholder="请输入改变积分"
+          clearable
+          size="small"
+          @keyup.enter.native="handleQuery"
+        />
+      </el-form-item>
+      <el-form-item label="时间" prop="changeTime">
+        <el-date-picker clearable size="small"
+          v-model="queryParams.changeTime"
+          type="date"
+          value-format="yyyy-MM-dd"
+          placeholder="选择消费或增加积分的时间">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="获取方式" prop="consumptionType">
+        <el-select v-model="queryParams.consumptionType" placeholder="请选择获取积分的方式" clearable size="small">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="积分增减" prop="changeType" >
+        <el-select v-model="queryParams.changeType" placeholder="请选择积分是增加还是减少" clearable size="small">
+          <el-option label="请选择字典生成" value="" />
+        </el-select>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" icon="el-icon-search" size="mini" @click="handleQuery">搜索</el-button>
@@ -23,15 +43,15 @@
       </el-form-item>
     </el-form>
 
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
+   <el-row :gutter="10" class="mb8">
+<!--      <el-col :span="1.5">
         <el-button
           type="primary"
           plain
           icon="el-icon-plus"
           size="mini"
           @click="handleAdd"
-          v-hasPermi="['system:firstclass:add']"
+          v-hasPermi="['system:myintegral:add']"
         >新增</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -42,7 +62,7 @@
           size="mini"
           :disabled="single"
           @click="handleUpdate"
-          v-hasPermi="['system:firstclass:edit']"
+          v-hasPermi="['system:myintegral:edit']"
         >修改</el-button>
       </el-col>
       <el-col :span="1.5">
@@ -53,9 +73,9 @@
           size="mini"
           :disabled="multiple"
           @click="handleDelete"
-          v-hasPermi="['system:firstclass:remove']"
+          v-hasPermi="['system:myintegral:remove']"
         >删除</el-button>
-      </el-col>
+      </el-col> -->
       <el-col :span="1.5">
         <el-button
           type="warning"
@@ -63,20 +83,23 @@
           icon="el-icon-download"
           size="mini"
           @click="handleExport"
-          v-hasPermi="['system:firstclass:export']"
+          v-hasPermi="['system:myintegral:export']"
         >导出</el-button>
       </el-col>
       <right-toolbar :showSearch.sync="showSearch" @queryTable="getList"></right-toolbar>
     </el-row>
 
-    <el-table v-loading="loading" :data="firstclassList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="myintegralList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="一级分类编号" align="center" prop="cateId"/>
-      <el-table-column label="一级分类商品名" align="center" :show-overflow-tooltip="true" >
-		  <template slot-scope="scope">		 
-			  <span>{{scope.row.cateName}}</span>
-		  </template>
-	  </el-table-column>	  
+      <el-table-column label="用户名称" align="center" prop="userName" />
+      <el-table-column label="改变积分" align="center" prop="changeIntegral" />
+      <el-table-column label="消费或增加积分的时间" align="center" prop="changeTime" width="180">
+        <template slot-scope="scope">
+          <span>{{ parseTime(scope.row.changeTime, '{y}-{m}-{d}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="获取积分的方式" align="center" prop="consumptionType" />
+      <el-table-column label="积分是增加还是减少" align="center" prop="changeType" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
@@ -84,14 +107,14 @@
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row)"
-            v-hasPermi="['system:firstclass:edit']"
+            v-hasPermi="['system:myintegral:edit']"
           >修改</el-button>
           <el-button
             size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row)"
-            v-hasPermi="['system:firstclass:remove']"
+            v-hasPermi="['system:myintegral:remove']"
           >删除</el-button>
         </template>
       </el-table-column>
@@ -105,11 +128,32 @@
       @pagination="getList"
     />
 
-    <!-- 添加或修改一级分类对话框 -->
+    <!-- 添加或修改myintegral对话框 -->
     <el-dialog :title="title" :visible.sync="open" width="500px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="80px">
-        <el-form-item label="商品名" prop="cateName">
-          <el-input v-model="form.cateName" placeholder="请输入一级分类商品名" />
+        <el-form-item label="用户名称" prop="userName">
+          <el-input v-model="form.userName" placeholder="请输入用户名称" />
+        </el-form-item>
+        <el-form-item label="改变积分" prop="changeIntegral">
+          <el-input v-model="form.changeIntegral" placeholder="请输入改变积分" />
+        </el-form-item>
+        <el-form-item label="消费或增加积分的时间" prop="changeTime">
+          <el-date-picker clearable size="small"
+            v-model="form.changeTime"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="选择消费或增加积分的时间">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="获取积分的方式" prop="consumptionType">
+          <el-select v-model="form.consumptionType" placeholder="请选择获取积分的方式">
+            <el-option label="请选择字典生成" value="" />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="积分是增加还是减少" prop="changeType">
+          <el-select v-model="form.changeType" placeholder="请选择积分是增加还是减少">
+            <el-option label="请选择字典生成" value="" />
+          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -121,10 +165,10 @@
 </template>
 
 <script>
-import { listFirstclass, getFirstclass, delFirstclass, addFirstclass, updateFirstclass, exportFirstclass } from "@/api/system/firstclass";
+import { listMyintegral, getMyintegral, delMyintegral, addMyintegral, updateMyintegral, exportMyintegral } from "@/api/system/myintegral";
 
 export default {
-  name: "Firstclass",
+  name: "Myintegral",
   components: {
   },
   data() {
@@ -141,9 +185,8 @@ export default {
       showSearch: true,
       // 总条数
       total: 0,
-      // 一级分类表格数据
-      firstclassList: [],
-	  cateIdone:[],
+      // myintegral表格数据
+      myintegralList: [],
       // 弹出层标题
       title: "",
       // 是否显示弹出层
@@ -152,8 +195,11 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        cateName: null
-		
+        userName: null,
+        changeIntegral: null,
+        changeTime: null,
+        consumptionType: null,
+        changeType: null
       },
       // 表单参数
       form: {},
@@ -164,25 +210,17 @@ export default {
   },
   created() {
     this.getList();
-	this.getcateId();
   },
   methods: {
-    /** 查询一级分类列表 */
+    /** 查询myintegral列表 */
     getList() {
       this.loading = true;
-      listFirstclass(this.queryParams).then(response => {
-        this.firstclassList = response.rows;
-		console.log(this.firstclassList)
+      listMyintegral(this.queryParams).then(response => {
+        this.myintegralList = response.rows;
         this.total = response.total;
         this.loading = false;
       });
     },
-	getcateId(){
-		listFirstclass().then(response => {
-	    this.cateIdone = response.rows;
-		console.log(this.cateIdone)
-		});
-	},
     // 取消按钮
     cancel() {
       this.open = false;
@@ -191,8 +229,11 @@ export default {
     // 表单重置
     reset() {
       this.form = {
-        cateId: null,
-        cateName: null
+        userName: null,
+        changeIntegral: null,
+        changeTime: null,
+        consumptionType: null,
+        changeType: null
       };
       this.resetForm("form");
     },
@@ -208,7 +249,7 @@ export default {
     },
     // 多选框选中数据
     handleSelectionChange(selection) {
-      this.ids = selection.map(item => item.cateId)
+      this.ids = selection.map(item => item.userName)
       this.single = selection.length!==1
       this.multiple = !selection.length
     },
@@ -216,30 +257,30 @@ export default {
     handleAdd() {
       this.reset();
       this.open = true;
-      this.title = "添加一级分类";
+      this.title = "添加myintegral";
     },
     /** 修改按钮操作 */
     handleUpdate(row) {
       this.reset();
-      const cateId = row.cateId || this.ids
-      getFirstclass(cateId).then(response => {
+      const userName = row.userName || this.ids
+      getMyintegral(userName).then(response => {
         this.form = response.data;
         this.open = true;
-        this.title = "修改一级分类";
+        this.title = "修改myintegral";
       });
     },
     /** 提交按钮 */
     submitForm() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          if (this.form.cateId != null) {
-            updateFirstclass(this.form).then(response => {
+          if (this.form.userName != null) {
+            updateMyintegral(this.form).then(response => {
               this.msgSuccess("修改成功");
               this.open = false;
               this.getList();
             });
           } else {
-            addFirstclass(this.form).then(response => {
+            addMyintegral(this.form).then(response => {
               this.msgSuccess("新增成功");
               this.open = false;
               this.getList();
@@ -250,13 +291,13 @@ export default {
     },
     /** 删除按钮操作 */
     handleDelete(row) {
-      const cateIds = row.cateId || this.ids;
-      this.$confirm('是否确认删除一级分类编号为"' + cateIds + '"的数据项?', "警告", {
+      const userNames = row.userName || this.ids;
+      this.$confirm('是否确认删除myintegral编号为"' + userNames + '"的数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return delFirstclass(cateIds);
+          return delMyintegral(userNames);
         }).then(() => {
           this.getList();
           this.msgSuccess("删除成功");
@@ -265,12 +306,12 @@ export default {
     /** 导出按钮操作 */
     handleExport() {
       const queryParams = this.queryParams;
-      this.$confirm('是否确认导出所有一级分类数据项?', "警告", {
+      this.$confirm('是否确认导出所有myintegral数据项?', "警告", {
           confirmButtonText: "确定",
           cancelButtonText: "取消",
           type: "warning"
         }).then(function() {
-          return exportFirstclass(queryParams);
+          return exportMyintegral(queryParams);
         }).then(response => {
           this.download(response.msg);
         })

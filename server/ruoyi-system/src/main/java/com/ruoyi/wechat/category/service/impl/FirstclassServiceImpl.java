@@ -1,11 +1,16 @@
 package com.ruoyi.wechat.category.service.impl;
 
-import java.util.List;
+import com.ruoyi.common.core.domain.entity.SysDictData;
+import com.ruoyi.common.utils.DictUtils;
+import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.wechat.category.domain.Firstclass;
+import com.ruoyi.wechat.category.domain.Secondclass;
+import com.ruoyi.wechat.category.mapper.FirstclassMapper;
+import com.ruoyi.wechat.category.service.IFirstclassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.wechat.category.mapper.FirstclassMapper;
-import com.ruoyi.wechat.category.domain.Firstclass;
-import com.ruoyi.wechat.category.service.IFirstclassService;
+
+import java.util.List;
 
 /**
  * myfnService业务层处理
@@ -30,6 +35,9 @@ public class FirstclassServiceImpl implements IFirstclassService
     {
         return firstclassMapper.selectFirstclassById(cateId);
     }
+
+
+
 
     /**
      * 查询myfn列表
