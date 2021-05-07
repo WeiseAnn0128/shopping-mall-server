@@ -1,0 +1,138 @@
+.content-center{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.orders{
+  height: 100%;
+}
+.order{
+  padding-left: 32rpx;
+  margin-top: 29rpx;
+  background: #fff;
+}
+.order .header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25rpx 0 0;
+  border-bottom: 1rpx solid #f4f4f4;
+  height: 80rpx;
+  font-size: 27rpx;
+  color: #555;
+}
+.product{
+  display: flex;
+  align-items: center;
+  height: 180rpx;
+  border-bottom: 1rpx solid #f4f4f4;
+}
+.product image{
+  width: 145rpx;
+  height: 145rpx;
+  background: #f4f4f4;
+}
+.product .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 430rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+}
+.product .title{
+  font-size: 27rpx;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product .desc{
+  font-size: 25rpx;
+  color: #999;
+}
+.product .status{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  width: 100rpx;
+  height: 100rpx;
+}
+.status .package{
+  font-size: 27rpx;
+  color: #555;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.status .txt{
+  font-size: 25rpx;
+  color: #b4282d;
+}
+.order .foot{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25rpx 0 0;
+  height: 80rpx;
+  font-size: 27rpx;
+  color: #555;
+}
+.foot .cu-btn{
+  width: 135rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+.tab {
+  float: left;
+  width: 33.3333%;
+  text-align: center;
+  padding: 10rpx 0;
+}
+
+
+.topTabSwiper:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.tabBorer {
+  border-bottom: 1px solid #f00;
+  color: #f00;
+}
+
+.swiper {
+  width: 100%;
+}
+
+.swiper_con {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 80rpx 0;
+}
+
+/*  */
+
+.person_box {
+  position: relative;
+}
+
+.phone_select {
+  margin-top: 0;
+  z-index: 100;
+  position: absolute;
+}
+
+.select_one {
+  text-align: center;
+  background-color: rgb(239, 239, 239);
+  width: 676rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 0 5%;
+  border-bottom: 2rpx solid rgb(255, 255, 255);
+}
