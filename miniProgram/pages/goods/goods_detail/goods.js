@@ -271,7 +271,7 @@ Component({
     },
     jumpPay: function(e){
       wx.navigateTo({
-        url: '/pages/goods/submit/submit',
+        url: '/pages/goods/sumbit/sumbit',
       })
 
     }
