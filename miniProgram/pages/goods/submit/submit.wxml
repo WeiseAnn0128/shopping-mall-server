@@ -1,0 +1,49 @@
+<cu-custom bgColor="bg-gradual-green" isBack="{{true}}">
+  <view slot="backText" class="bt">确认订单</view>
+</cu-custom>
+<!-- 地址链表 -->
+<view class="address-list">
+  <view class="address-item">
+      <view class="item-top">{{address.name}} <text class="color">{{address.mobile}}</text></view>
+      <view class="item-content">{{address.address}} {{address.street}}</view>
+  </view>
+</view>
+<!-- 商品详情数量 -->
+<view class="order">
+  <view wx:for="{{goodsArr}}" wx:key="id">
+    <!-- 商品详情 -->
+    <view class="goods-de">
+      <image src="{{item.url}}" style="width:220rpx ; height:160rpx;"></image>
+      <view class="spec">
+        <view>{{item.text}}</view>
+        <view class="specification">{{item.specification}}</view>
+      </view>
+    </view> 
+    <!-- 购买数量 -->
+    <view class="number">
+      <view>购买数量:</view>
+      <view class="flex" style="flex: 1; flex-direction: row-reverse;">
+        <view bindtap="plusCount" data-index="{{index}}" class="manipulate manipulate-plus">+</view>
+        <view class="count">{{item.number}}</view>
+        <view bindtap="redCount" data-index="{{index}}" class="manipulate manipulate-subtract">-</view>
+      </view>
+    </view>
+    <!-- <view class="delivery">配送方式:</view> -->
+  </view>
+    <view class="remark">订单备注:
+      <textarea class="areas" placeholder='选填，请先和商家协商一致' minlength="{{min}}" maxlength="{{max}}" bindinput="inputs"></textarea>
+    </view>
+    <!-- <view class="pric" wx:for="{{goodsArr}}" wx:key="id">
+      <view class="c-total">共{{item.number}}件</view>
+      <view class="b-total">小计：<text>￥{{item.price * item.number}}</text></view>
+    </view>   -->
+</view>
+<view style="height: 142rpx"></view>
+<!-- 总价格 -->
+<view class="submit" bindtap="clickAdd">
+      <view class="a-total">{{totalNum}}</view>  
+      <view class="total">合计：<text>￥{{totalPrice}}</text></view>
+      <button class="add" size="mini" >
+        <text>提交订单</text>
+      </button>   
+</view>
