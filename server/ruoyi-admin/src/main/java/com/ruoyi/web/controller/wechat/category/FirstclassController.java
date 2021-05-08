@@ -27,7 +27,7 @@ import com.ruoyi.common.core.page.TableDataInfo;
  * @date 2021-04-25
  */
 @RestController
-@RequestMapping("/mydemo/firstclass")
+@RequestMapping("/system/firstclass")
 public class FirstclassController extends BaseController
 {
     @Autowired
@@ -36,7 +36,7 @@ public class FirstclassController extends BaseController
     /**
      * 查询myfn列表
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:list') or @ss.hasRole('wechat')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:list') or @ss.hasRole('wechat')")
     @GetMapping("/list")
     public TableDataInfo list(Firstclass firstclass)
     {
@@ -49,7 +49,7 @@ public class FirstclassController extends BaseController
     /**
      * 导出myfn列表
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:export')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:export')")
     @Log(title = "myfn", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(Firstclass firstclass)
@@ -62,7 +62,7 @@ public class FirstclassController extends BaseController
     /**
      * 获取myfn详细信息
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:query')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:query')")
     @GetMapping(value = "/{cateId}")
     public AjaxResult getInfo(@PathVariable("cateId") Long cateId)
     {
@@ -72,7 +72,7 @@ public class FirstclassController extends BaseController
     /**
      * 新增myfn
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:add')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:add')")
     @Log(title = "myfn", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Firstclass firstclass)
@@ -83,7 +83,7 @@ public class FirstclassController extends BaseController
     /**
      * 修改myfn
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:edit')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:edit')")
     @Log(title = "myfn", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Firstclass firstclass)
@@ -94,7 +94,7 @@ public class FirstclassController extends BaseController
     /**
      * 删除myfn
      */
-    @PreAuthorize("@ss.hasPermi('mydemo:firstclass:remove')")
+    @PreAuthorize("@ss.hasPermi('system:firstclass:remove')")
     @Log(title = "myfn", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{cateIds}")
     public AjaxResult remove(@PathVariable Long[] cateIds)

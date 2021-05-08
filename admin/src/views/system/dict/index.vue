@@ -249,6 +249,7 @@ export default {
       this.loading = true;
       listType(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
           this.typeList = response.rows;
+		  console.log(this.typeList)
           this.total = response.total;
           this.loading = false;
         }

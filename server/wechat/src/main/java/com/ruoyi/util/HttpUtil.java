@@ -28,7 +28,6 @@ public class HttpUtil {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
             String str;
-
             StringBuilder buffer = new StringBuilder();
             while ((str = bufferedReader.readLine()) != null) {
                 buffer.append(str);
