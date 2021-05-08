@@ -130,12 +130,10 @@ Component({
       listNotice: function () {
         var lis=[]
         network.request('system/notice/list', {}, (res)=> {
-          console.log(res)
           for(var i in res.rows){
             var str=res.rows[i].noticeContent
             var last=str.lastIndexOf("<")
             str=res.rows[i].noticeTitle+":"+str.substring(3,last)
-            console.log(str)
             lis.push(str)
           }
             this.setData({

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 查询myintegral列表
+// 查询积分表列表
 export function listMyintegral(query) {
   return request({
     url: '/system/myintegral/list',
@@ -9,15 +9,15 @@ export function listMyintegral(query) {
   })
 }
 
-// 查询myintegral详细
-export function getMyintegral(userName) {
+// 查询积分表详细
+export function getMyintegral(id) {
   return request({
-    url: '/system/myintegral/' + userName,
+    url: '/system/myintegral/' + id,
     method: 'get'
   })
 }
 
-// 新增myintegral
+// 新增积分表
 export function addMyintegral(data) {
   return request({
     url: '/system/myintegral',
@@ -26,7 +26,7 @@ export function addMyintegral(data) {
   })
 }
 
-// 修改myintegral
+// 修改积分表
 export function updateMyintegral(data) {
   return request({
     url: '/system/myintegral',
@@ -35,15 +35,15 @@ export function updateMyintegral(data) {
   })
 }
 
-// 删除myintegral
-export function delMyintegral(userName) {
+// 删除积分表
+export function delMyintegral(id) {
   return request({
-    url: '/system/myintegral/' + userName,
+    url: '/system/myintegral/' + id,
     method: 'delete'
   })
 }
 
-// 导出myintegral
+// 导出积分表
 export function exportMyintegral(query) {
   return request({
     url: '/system/myintegral/export',

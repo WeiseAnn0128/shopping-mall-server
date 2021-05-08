@@ -3,16 +3,15 @@ package com.ruoyi.wechat.scocer.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.wechat.scocer.service.IMyintegralService;
-import com.ruoyi.wechat.scocer.domain.Myintegral;
 import com.ruoyi.wechat.scocer.mapper.MyintegralMapper;
-
+import com.ruoyi.wechat.scocer.domain.Myintegral;
+import com.ruoyi.wechat.scocer.service.IMyintegralService;
 
 /**
- * myintegralService业务层处理
+ * 积分表Service业务层处理
  * 
- * @author ruoyi
- * @date 2021-05-07
+ * @author ysq
+ * @date 2021-05-08
  */
 @Service
 public class MyintegralServiceImpl implements IMyintegralService 
@@ -21,22 +20,22 @@ public class MyintegralServiceImpl implements IMyintegralService
     private MyintegralMapper myintegralMapper;
 
     /**
-     * 查询myintegral
+     * 查询积分表
      * 
-     * @param userName myintegralID
-     * @return myintegral
+     * @param id 积分表ID
+     * @return 积分表
      */
     @Override
-    public Myintegral selectMyintegralById(String userName)
+    public Myintegral selectMyintegralById(Integer id)
     {
-        return myintegralMapper.selectMyintegralById(userName);
+        return myintegralMapper.selectMyintegralById(id);
     }
 
     /**
-     * 查询myintegral列表
+     * 查询积分表列表
      * 
-     * @param myintegral myintegral
-     * @return myintegral
+     * @param myintegral 积分表
+     * @return 积分表
      */
     @Override
     public List<Myintegral> selectMyintegralList(Myintegral myintegral)
@@ -45,9 +44,9 @@ public class MyintegralServiceImpl implements IMyintegralService
     }
 
     /**
-     * 新增myintegral
+     * 新增积分表
      * 
-     * @param myintegral myintegral
+     * @param myintegral 积分表
      * @return 结果
      */
     @Override
@@ -57,9 +56,9 @@ public class MyintegralServiceImpl implements IMyintegralService
     }
 
     /**
-     * 修改myintegral
+     * 修改积分表
      * 
-     * @param myintegral myintegral
+     * @param myintegral 积分表
      * @return 结果
      */
     @Override
@@ -69,26 +68,26 @@ public class MyintegralServiceImpl implements IMyintegralService
     }
 
     /**
-     * 批量删除myintegral
+     * 批量删除积分表
      * 
-     * @param userNames 需要删除的myintegralID
+     * @param ids 需要删除的积分表ID
      * @return 结果
      */
     @Override
-    public int deleteMyintegralByIds(String[] userNames)
+    public int deleteMyintegralByIds(Integer[] ids)
     {
-        return myintegralMapper.deleteMyintegralByIds(userNames);
+        return myintegralMapper.deleteMyintegralByIds(ids);
     }
 
     /**
-     * 删除myintegral信息
+     * 删除积分表信息
      * 
-     * @param userName myintegralID
+     * @param id 积分表ID
      * @return 结果
      */
     @Override
-    public int deleteMyintegralById(String userName)
+    public int deleteMyintegralById(Integer id)
     {
-        return myintegralMapper.deleteMyintegralById(userName);
+        return myintegralMapper.deleteMyintegralById(id);
     }
 }

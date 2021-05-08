@@ -1,126 +1,99 @@
-
-var app=getApp()
-
+// pages/about/orderss/orderss.js
 Page({
- 
+
   /**
    * 页面的初始数据
    */
   data: {
-    currtab: 0,
-    swipertab: [
-      { name: '全部', index: 0 }, { name: '待付款', index: 1 }, { name: '待发货', index: 2 }, { name: '待收货', index: 3 }, { name: '待评价', index: 4}],
-    
+    currentData: 0, 
+    selectPerson: true,
     Order: [
-      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122" ,goToUrl: "/pages/about/comment/comment?type=0"},
-      { name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122",goToUrl: "/pages/about/comment/comment?type=1" }
+      {time:"2021-05-07 16.12",url:"https://img.alicdn.com/bao/uploaded/i4/2208714883592/O1CN01qETG9l1cPBK0tzW9M_!!2208714883592.png",title:"常温纯牛奶 250毫升*12盒*2提",desc:"纯牛奶 12盒*2提",package:"包裹x1",money:"88.00",},
+      {time:"2021-05-07 16.12",url:"https://img.alicdn.com/bao/uploaded/i4/2208714883592/O1CN01qETG9l1cPBK0tzW9M_!!2208714883592.png",title:"常温纯牛奶 250毫升*12盒*2提",desc:"纯牛奶 12盒*2提",package:"包裹x1",money:"88.00",}
     ],
-  
   },
   goToPages(e) {
     wx.navigateTo({
-      url: e.currentTarget.dataset.target,
+      url: "/pages/about/comment/comment",
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+  
   },
+  //获取当前滑块的index
+  bindchange: function(e) {
+    const that = this;
+    that.setData({
+      currentData: e.detail.current
+    })
+  },
+  //点击切换，滑块index赋值
+  checkCurrent: function(e) {
+    const that = this;
+    if (that.data.currentData === e.target.dataset.current) {
+      return false;
+    } else {
+      that.setData({
+        currentData: e.target.dataset.current
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // 页面渲染完成
-    this.getDeviceInfo()
-    this.orderShow()
+
   },
- 
-  getDeviceInfo: function () {
-    let that = this
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          deviceW: res.windowWidth,
-          deviceH: res.windowHeight
-        })
-      }
-    })
-  },
- 
+
   /**
-  * @Explain：选项卡点击切换
-  */
-  tabSwitch: function (e) {
-    var that = this
-    if (this.data.currtab === e.target.dataset.current) {
-      return false
-    } else {
-      that.setData({
-        currtab: e.target.dataset.current
-      })
-    }
-  },
- 
-  tabChange: function (e) {
-    this.setData({ currtab: e.detail.current })
-    this.orderShow()
-  },
- 
-  orderShow: function () {
-    let that = this
-    switch (this.data.currtab) {
-      case 0:       
-        //全部
-        that.totalShow()
-        break
-      case 1:
-        //待付款
-        that.waitPayShow()
-        break
-      case 2:
-      //待发货     
-        that.waitSend()
-        break
-      case 3:
-        //待收货
-        that.waitReceive()
-        break
-      case 4:
-        //待评价
-        that.waitEvaluate()
-        break
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
 
-    }
   },
-  totalShow: function(e){
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  tabSelect(e) {
     this.setData({
-
-    })   
-  },
- 
-  waitPayShow:function(e){
-    this.setData({
-
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id-1)*60
     })
-  },
- 
-  waitSend: function () {
-    this.setData({
-      Order: [{ name: "精品手表帅气男士商务透气", state: "卖家已发货", description: "二手JavaWeb程序设计任务教程黑马程序员", status: "未开始", url: "https://img1.baidu.com/it/u=4198812456,3069022139&fm=26&fmt=auto&gp=0.jpg", money: "122" }],
-    })
-  },
-
-  waitReceive: function () {
-    this.setData({
-     
-    })
-  },
-
-  waitEvaluate: function () {
-    this.setData({
-    })
-  },
-  
+  }
 })

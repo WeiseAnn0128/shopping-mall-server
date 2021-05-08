@@ -128,21 +128,20 @@ INSERT INTO `goods_detail` VALUES (2, 124, '皮鞋', '200', 'https://img.alicdn.
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
 /*
  Navicat Premium Data Transfer
 
- Source Server         : yang
+ Source Server         : Link
  Source Server Type    : MySQL
- Source Server Version : 80018
+ Source Server Version : 50712
  Source Host           : localhost:3306
  Source Schema         : shopping_mall
 
  Target Server Type    : MySQL
- Target Server Version : 80018
+ Target Server Version : 50712
  File Encoding         : 65001
 
- Date: 07/05/2021 15:30:27
+ Date: 08/05/2021 09:28:12
 */
 
 SET NAMES utf8mb4;
@@ -153,14 +152,17 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `myintegral`;
 CREATE TABLE `myintegral`  (
-  `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '用户名称',
-  `change_integral` int(20) DEFAULT NULL COMMENT '改变积分',
-  `change_time` datetime(6) DEFAULT NULL COMMENT '消费或增加积分的时间',
-  `consumption_type` int(10) DEFAULT NULL COMMENT '获取积分的方式（0：签到；1：消费；2：购买会员）',
-  `change_type` int(10) DEFAULT NULL COMMENT '积分是增加还是减少（0:增加；1：减少）'
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(8) NULL DEFAULT NULL COMMENT '用户名称',
+  `change_integral` int(20) NULL DEFAULT NULL COMMENT '改变积分',
+  `change_time` datetime(6) NULL DEFAULT NULL COMMENT '消费或增加积分的时间',
+  `consumption_type` int(10) NULL DEFAULT NULL COMMENT '获取积分的方式（0：签到；1：消费；2：购买会员）',
+  `change_type` int(10) NULL DEFAULT NULL COMMENT '积分是增加还是减少（0:增加；1：减少）',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
 
 
 /*
@@ -509,3 +511,23 @@ values('商品详情删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'sys
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('商品详情导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:detail:export',       '#', 'admin', sysdate(), '', null, '');
+
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表', '2006', '1', 'myintegral', 'system/myintegral/index', 1, 0, 'C', '0', '0', 'system:myintegral:list', '#', 'admin', sysdate(), '', null, '积分表菜单');
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('积分表导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:export',       '#', 'admin', sysdate(), '', null, '');
