@@ -1,10 +1,11 @@
 <!--pages/collect/collect.wxml-->
-<cu-custom bgColor="bg-gradual-green">
+<cu-custom bgColor="bg-gradual-green" isBack="true">
+  <view slot="backText">返回</view>
   <view slot="content">收藏</view>
 </cu-custom>
 <view class="cu-card article {{isCard?'no-card':''}}" wx:if="{{collectlist.length>0}}">
   <view class="cu-item shadow">
-    <block wx:for="{{collectlist}}" >
+    <block wx:for="{{collectlist}}" wx:key="id">
       <view class="margin-top">
       </view>
       <view class="content">

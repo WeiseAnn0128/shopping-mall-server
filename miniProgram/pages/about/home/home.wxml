@@ -37,7 +37,7 @@
   <!-- 3 -->
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow">
-      <navigator class="content" url="/pages/about/collect/collect" hover-class="none">
+      <navigator class="content" url="/pages/goods/collect/collect" hover-class="none">
         <text class= "text-grey">收藏</text>
       </navigator>
     </view>

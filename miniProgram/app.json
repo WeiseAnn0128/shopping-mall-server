@@ -17,8 +17,7 @@
     "pages/about/address/address",
     "pages/about/question/question",
     "pages/about/comment/comment",
-    "pages/about/orders/orders",
-    "pages/about/orderss/orderss"
+    "pages/about/orders/orders"
   ],
   "window": {
     "backgroundTextStyle": "light",
