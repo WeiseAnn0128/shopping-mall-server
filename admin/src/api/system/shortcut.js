@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 查询二级分类列表
 export function listSecondClass() {
   return request({
-    url: '/mydemo/secondclass/list',
+    url: '/system/secondclass/list',
     method: 'get',
     params: {
         pageNum: 1,
