@@ -21,10 +21,10 @@ import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.page.TableDataInfo;
 
 /**
- * myintegralController
+ * 积分表Controller
  * 
- * @author ruoyi
- * @date 2021-05-07
+ * @author ysq
+ * @date 2021-05-08
  */
 @RestController
 @RequestMapping("/system/myintegral")
@@ -34,7 +34,7 @@ public class MyintegralController extends BaseController
     private IMyintegralService myintegralService;
 
     /**
-     * 查询myintegral列表
+     * 查询积分表列表
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:list')")
     @GetMapping("/list")
@@ -46,33 +46,33 @@ public class MyintegralController extends BaseController
     }
 
     /**
-     * 导出myintegral列表
+     * 导出积分表列表
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:export')")
-    @Log(title = "myintegral", businessType = BusinessType.EXPORT)
+    @Log(title = "积分表", businessType = BusinessType.EXPORT)
     @GetMapping("/export")
     public AjaxResult export(Myintegral myintegral)
     {
         List<Myintegral> list = myintegralService.selectMyintegralList(myintegral);
         ExcelUtil<Myintegral> util = new ExcelUtil<Myintegral>(Myintegral.class);
-        return util.exportExcel(list, "myintegral数据");
+        return util.exportExcel(list, "积分表数据");
     }
 
     /**
-     * 获取myintegral详细信息
+     * 获取积分表详细信息
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:query')")
-    @GetMapping(value = "/{userName}")
-    public AjaxResult getInfo(@PathVariable("userName") String userName)
+    @GetMapping(value = "/{id}")
+    public AjaxResult getInfo(@PathVariable("id") Integer id)
     {
-        return AjaxResult.success(myintegralService.selectMyintegralById(userName));
+        return AjaxResult.success(myintegralService.selectMyintegralById(id));
     }
 
     /**
-     * 新增myintegral
+     * 新增积分表
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:add')")
-    @Log(title = "myintegral", businessType = BusinessType.INSERT)
+    @Log(title = "积分表", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Myintegral myintegral)
     {
@@ -80,10 +80,10 @@ public class MyintegralController extends BaseController
     }
 
     /**
-     * 修改myintegral
+     * 修改积分表
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:edit')")
-    @Log(title = "myintegral", businessType = BusinessType.UPDATE)
+    @Log(title = "积分表", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Myintegral myintegral)
     {
@@ -91,13 +91,13 @@ public class MyintegralController extends BaseController
     }
 
     /**
-     * 删除myintegral
+     * 删除积分表
      */
     @PreAuthorize("@ss.hasPermi('system:myintegral:remove')")
-    @Log(title = "myintegral", businessType = BusinessType.DELETE)
-	@DeleteMapping("/{userNames}")
-    public AjaxResult remove(@PathVariable String[] userNames)
+    @Log(title = "积分表", businessType = BusinessType.DELETE)
+	@DeleteMapping("/{ids}")
+    public AjaxResult remove(@PathVariable Integer[] ids)
     {
-        return toAjax(myintegralService.deleteMyintegralByIds(userNames));
+        return toAjax(myintegralService.deleteMyintegralByIds(ids));
     }
 }
