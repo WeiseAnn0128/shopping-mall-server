@@ -5,7 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.ruoyi.wechat.scocer.mapper.MyintegralMapper">
     
     <resultMap type="Myintegral" id="MyintegralResult">
-        <result property="userName"    column="user_name"    />
+        <result property="id"    column="id"    />
+        <result property="userId"    column="user_id"    />
         <result property="changeIntegral"    column="change_integral"    />
         <result property="changeTime"    column="change_time"    />
         <result property="consumptionType"    column="consumption_type"    />
@@ -13,13 +14,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectMyintegralVo">
-        select user_name, change_integral, change_time, consumption_type, change_type from myintegral
+        select id, user_id, change_integral, change_time, consumption_type, change_type from myintegral
     </sql>
 
     <select id="selectMyintegralList" parameterType="Myintegral" resultMap="MyintegralResult">
         <include refid="selectMyintegralVo"/>
         <where>  
-            <if test="userName != null  and userName != ''"> and user_name like concat('%', #{userName}, '%')</if>
+            <if test="userId != null "> and user_id = #{userId}</if>
             <if test="changeIntegral != null "> and change_integral = #{changeIntegral}</if>
             <if test="changeTime != null "> and change_time = #{changeTime}</if>
             <if test="consumptionType != null "> and consumption_type = #{consumptionType}</if>
@@ -27,22 +28,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </where>
     </select>
     
-    <select id="selectMyintegralById" parameterType="String" resultMap="MyintegralResult">
+    <select id="selectMyintegralById" parameterType="Integer" resultMap="MyintegralResult">
         <include refid="selectMyintegralVo"/>
-        where user_name = #{userName}
+        where id = #{id}
     </select>
         
-    <insert id="insertMyintegral" parameterType="Myintegral">
+    <insert id="insertMyintegral" parameterType="Myintegral" useGeneratedKeys="true" keyProperty="id">
         insert into myintegral
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="userName != null">user_name,</if>
+            <if test="userId != null">user_id,</if>
             <if test="changeIntegral != null">change_integral,</if>
             <if test="changeTime != null">change_time,</if>
             <if test="consumptionType != null">consumption_type,</if>
             <if test="changeType != null">change_type,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="userName != null">#{userName},</if>
+            <if test="userId != null">#{userId},</if>
             <if test="changeIntegral != null">#{changeIntegral},</if>
             <if test="changeTime != null">#{changeTime},</if>
             <if test="consumptionType != null">#{consumptionType},</if>
@@ -53,22 +54,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateMyintegral" parameterType="Myintegral">
         update myintegral
         <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
             <if test="changeIntegral != null">change_integral = #{changeIntegral},</if>
             <if test="changeTime != null">change_time = #{changeTime},</if>
             <if test="consumptionType != null">consumption_type = #{consumptionType},</if>
             <if test="changeType != null">change_type = #{changeType},</if>
         </trim>
-        where user_name = #{userName}
+        where id = #{id}
     </update>
 
-    <delete id="deleteMyintegralById" parameterType="String">
-        delete from myintegral where user_name = #{userName}
+    <delete id="deleteMyintegralById" parameterType="Integer">
+        delete from myintegral where id = #{id}
     </delete>
 
     <delete id="deleteMyintegralByIds" parameterType="String">
-        delete from myintegral where user_name in 
-        <foreach item="userName" collection="array" open="(" separator="," close=")">
-            #{userName}
+        delete from myintegral where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
         </foreach>
     </delete>
 </mapper>

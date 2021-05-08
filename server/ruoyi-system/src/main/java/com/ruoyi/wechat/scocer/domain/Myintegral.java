@@ -8,18 +8,21 @@ import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
 /**
- * myintegral对象 myintegral
+ * 积分表对象 myintegral
  * 
- * @author ruoyi
- * @date 2021-05-07
+ * @author ysq
+ * @date 2021-05-08
  */
 public class Myintegral extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
+    /** $column.columnComment */
+    private Integer id;
+
     /** 用户名称 */
     @Excel(name = "用户名称")
-    private String userName;
+    private Integer userId;
 
     /** 改变积分 */
     @Excel(name = "改变积分")
@@ -38,14 +41,23 @@ public class Myintegral extends BaseEntity
     @Excel(name = "积分是增加还是减少", readConverterExp = "0=:增加；1：减少")
     private Integer changeType;
 
-    public void setUserName(String userName) 
+    public void setId(Integer id) 
     {
-        this.userName = userName;
+        this.id = id;
     }
 
-    public String getUserName() 
+    public Integer getId() 
     {
-        return userName;
+        return id;
+    }
+    public void setUserId(Integer userId) 
+    {
+        this.userId = userId;
+    }
+
+    public Integer getUserId() 
+    {
+        return userId;
     }
     public void setChangeIntegral(Long changeIntegral) 
     {
@@ -87,7 +99,8 @@ public class Myintegral extends BaseEntity
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-            .append("userName", getUserName())
+            .append("id", getId())
+            .append("userId", getUserId())
             .append("changeIntegral", getChangeIntegral())
             .append("changeTime", getChangeTime())
             .append("consumptionType", getConsumptionType())
