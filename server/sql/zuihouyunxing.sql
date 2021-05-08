@@ -367,28 +367,20 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-04-21 16:24:46', 'admin', '2021-04-21 16:24:46', '', NULL, '管理员', NULL, NULL, NULL);
 INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', '1', '', '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-04-21 16:24:46', 'admin', '2021-04-21 16:24:46', '', NULL, '测试员', NULL, NULL, NULL);
-INSERT INTO `sys_user` VALUES (24, NULL, 'o1hmc5CCbLnoKKvJPaMQYSUqGpwE', '忘川河', '00', '', '', '1', 'https://thirdwx.qlogo.cn/mmopen/vi_32/iambztibQNCEvPdkupA294Y8RY9OP1TXUxPNiaL72gvHcWDrgZ38TNic0Ye0Og310P1nolJXxGnknN6S26kY9RosLw/132', '$2a$10$Y.91c1OoYuOXWyKj.sAbBOGKOfFtXhGIpsgE6jzT7sjyBSoBAaMjS', '0', '0', '', NULL, 'admin', '2021-04-29 11:15:25', '', '2021-05-02 18:25:34', NULL, 'China', 'Henan', 'Xinxiang');
+
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
-
 INSERT INTO `sys_role` VALUES (5, '小程序', 'wechat', 0, '1', 1, 1, '0', '0', 'admin', '2021-04-25 11:27:39', '', NULL, NULL);
 
-
 INSERT INTO `sys_menu` VALUES (2006, '商城项目', 0, 5, 'shopping', NULL, 1, 0, 'M', '0', '0', NULL, 'shopping', 'admin', '2021-04-28 23:43:23', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2007, '常见问题的解答', 2006, 1, 'information', 'system/information/index', 1, 0, 'C', '0', '0', 'system:information:list', 'question', 'admin', '2021-04-29 00:02:00', 'admin', '2021-04-29 00:04:21', '常见问题的解答菜单');
-INSERT INTO `sys_menu` VALUES (2008, '常见问题的解答查询', 2007, 1, '#', '', 1, 0, 'F', '0', '0', 'system:information:query', '#', 'admin', '2021-04-29 00:02:00', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2009, '常见问题的解答新增', 2007, 2, '#', '', 1, 0, 'F', '0', '0', 'system:information:add', '#', 'admin', '2021-04-29 00:02:00', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2010, '常见问题的解答修改', 2007, 3, '#', '', 1, 0, 'F', '0', '0', 'system:information:edit', '#', 'admin', '2021-04-29 00:02:00', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2011, '常见问题的解答删除', 2007, 4, '#', '', 1, 0, 'F', '0', '0', 'system:information:remove', '#', 'admin', '2021-04-29 00:02:00', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (2012, '常见问题的解答导出', 2007, 5, '#', '', 1, 0, 'F', '0', '0', 'system:information:export', '#', 'admin', '2021-04-29 00:02:00', '', NULL, '');
-
 
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('二级类的快捷菜单关联增删查改', '2006', '1', 'shortcut', 'system/shortcut/index', 1, 0, 'C', '0', '0', 'system:shortcut:list', '#', 'admin', sysdate(), '', null, '二级类的快捷菜单关联增删查改菜单');
 
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
@@ -406,74 +398,12 @@ values('二级类的快捷菜单关联增删查改删除', @parentId, '4',  '#',
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('二级类的快捷菜单关联增删查改导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:shortcut:export',       '#', 'admin', sysdate(), '', null, '');
 
-
--- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类', '3', '1', 'secondclass', 'system/secondclass/index', 1, 0, 'C', '0', '0', 'system:secondclass:list', '#', 'admin', sysdate(), '', null, '二级分类菜单');
-
-
--- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:query',        '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:add',          '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:edit',         '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:remove',       '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('二级分类导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:export',       '#', 'admin', sysdate(), '', null, '');
-
--- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral', '3', '1', 'myintegral', 'system/myintegral/index', 1, 0, 'C', '0', '0', 'system:myintegral:list', '#', 'admin', sysdate(), '', null, 'myintegral菜单');
-
-
--- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:query',        '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:add',          '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:edit',         '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:remove',       '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('myintegral导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:export',       '#', 'admin', sysdate(), '', null, '');
-
--- 菜单 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答', '2006', '1', 'information', 'system/information/index', 1, 0, 'C', '0', '0', 'system:information:list', '#', 'admin', sysdate(), '', null, '常见问题的解答菜单');
-
-
--- 按钮 SQL
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:information:query',        '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:information:add',          '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:information:edit',         '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:information:remove',       '#', 'admin', sysdate(), '', null, '');
-
-insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
-values('常见问题的解答导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:information:export',       '#', 'admin', sysdate(), '', null, '');
-
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('一级分类', '3', '1', 'firstclass', 'system/firstclass/index', 1, 0, 'C', '0', '0', 'system:firstclass:list', '#', 'admin', sysdate(), '', null, '一级分类菜单');
 
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
@@ -493,8 +423,57 @@ values('一级分类导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'sys
 
 -- 菜单 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类', '3', '1', 'secondclass', 'system/secondclass/index', 1, 0, 'C', '0', '0', 'system:secondclass:list', '#', 'admin', sysdate(), '', null, '二级分类菜单');
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('二级分类导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:secondclass:export',       '#', 'admin', sysdate(), '', null, '');
+
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答', '2006', '1', 'information', 'system/information/index', 1, 0, 'C', '0', '0', 'system:information:list', '#', 'admin', sysdate(), '', null, '常见问题的解答菜单');
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:information:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:information:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:information:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:information:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('常见问题的解答导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:information:export',       '#', 'admin', sysdate(), '', null, '');
+
+
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('商品详情', '2006', '1', 'detail', 'system/detail/index', 1, 0, 'C', '0', '0', 'system:detail:list', '#', 'admin', sysdate(), '', null, '商品详情菜单');
 
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
 
 -- 按钮 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
@@ -516,6 +495,9 @@ values('商品详情导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'sys
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('积分表', '2006', '1', 'myintegral', 'system/myintegral/index', 1, 0, 'C', '0', '0', 'system:myintegral:list', '#', 'admin', sysdate(), '', null, '积分表菜单');
 
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
 -- 按钮 SQL
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('积分表查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:query',        '#', 'admin', sysdate(), '', null, '');
@@ -531,3 +513,6 @@ values('积分表删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('积分表导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:export',       '#', 'admin', sysdate(), '', null, '');
+
+
+
