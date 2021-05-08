@@ -1,0 +1,145 @@
+.address-list{
+  display: flex;
+  flex-direction: column;
+  padding:16rpx 16rpx 16rpx 16rpx ;
+}
+.address-item{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 20rpx 20rpx 20rpx;
+  margin-bottom:16rpx ;
+  margin-top:16rpx ;
+  border-radius:16rpx ;
+  background: white;
+}
+.item-top{
+  font-size: 29rpx;  
+  padding-bottom: 20rpx;
+  color: #333;
+}
+
+.item-top .color{
+  color: #999;
+}
+
+.item-content{
+  font-size:28rpx ;
+  color: #333;
+  padding-bottom: 20rpx;
+  margin-bottom:20rpx ;
+}
+.submit{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 142rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#fff ;
+}
+.submit .button{
+  width: 50rpx;
+  height: 60rpx;
+  border-radius:120rpx;
+}
+.add{
+  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: orange;
+  color: #fff;
+  border-radius: 35rpx;
+}
+.total{
+  padding-left:160rpx ;
+}
+.a-total{
+  padding-left: 120rpx;
+}
+ .order {
+  width: 95%;
+  margin: -10rpx 20rpx 20rpx 20rpx;
+  padding: 0rpx 20rpx;
+  background: #fff;
+  border-radius:30rpx ;
+}
+.goods-de{
+  display: flex;
+}
+.goods-de image{
+  margin-top:30rpx ;
+}
+.spec{
+  display: flex;
+  flex-direction: column;
+  padding-left:60rpx ;
+  padding-top:20rpx ;
+}
+.specification{
+  background: rgb(243, 238, 238);
+}
+.delivery{
+  padding: 60rpx 60rpx 40rpx; 
+}
+.remark{
+  padding: 60rpx 60rpx 40rpx; 
+  
+}
+.areas{
+  height:60rpx;
+  font-size: 20rpx;
+  padding-top: 30rpx;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.pric{
+  display: flex;
+  padding-left:60% ;
+  padding-bottom:20rpx ;
+}
+.c-total{
+  padding-top:6rpx ;
+  margin-right:20rpx ;
+  font-size:25rpx;
+}
+.a-total{
+  padding-top:6rpx ;
+  margin-right:20rpx ;
+  font-size:25rpx;
+}
+.number{
+  padding: 60rpx 60rpx 40rpx ;
+  display: flex;
+  justify-content: space-between;
+}
+.num-edit{
+  /* padding:15px; */
+  margin-left:120rpx ;
+}
+.manipulate {
+  border: 1px solid #ccc;
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+}
+.count{
+  text-align: center;
+  width: 70rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+}
+.manipulate-subtract {
+  border-top-left-radius: 7rpx;
+  border-bottom-left-radius: 7rpx;
+}
+.manipulate-plus {
+  border-top-right-radius: 7rpx;
+  border-bottom-right-radius: 7rpx;
+}
