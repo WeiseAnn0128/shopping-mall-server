@@ -1,144 +1,160 @@
-<cu-custom bgColor="bg-gradual-green" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">我的订单</view></cu-custom>
-
-<view class="cu-bar tabbar bg-white shadow top swiper-tab">
-  <block wx:for="{{swipertab}}" wx:key="sptab">
-    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
-  </block>
-</view>
- 
-<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
-  <!-- <swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px">
-  完成 -->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">订单中心</view></cu-custom>
+<!-- 标签 -->
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class='tab  {{currentData == 0 ? "tabBorer" : ""}}' data-current="0" bindtap='checkCurrent'>全部</view>
+    <view class='tab  {{currentData == 1 ? "tabBorer" : ""}}' data-current="1" bindtap='checkCurrent'>待付款</view>
+    <view class='tab  {{currentData == 2 ? "tabBorer" : ""}}' data-current="2" bindtap='checkCurrent'>待发货</view>
+    <view class='tab  {{currentData == 3 ? "tabBorer" : ""}}' data-current="3" bindtap='checkCurrent'>待收货</view>
+    <view class='tab  {{currentData == 4 ? "tabBorer" : ""}}' data-current="4" bindtap='checkCurrent'>已完成</view>
+  </view>
+</scroll-view>
+<swiper current="{{currentData}}" class='swiper' style="height:600px;" duration="300" bindchange="bindchange">
   <swiper-item>
-    <scroll-view class="hot-box" scroll-y="true">
-      <view  class="orderDetails" wx:for="{{Order}}" wx:key=" ">
-        <view class="orderListTitle">
-          <text class="userName">{{item.name}}</text>
-          <text class="orderStatus">{{item.state}}</text>
-        </view>
-        <view class="orderListDetails">
-          <view class="productImg">
-            <image src="{{item.url}}" background-size="cover"></image>
-          </view>
-          <view class="productInfo">
-            <view class="productTitle">{{item.description}}</view>
-            <text class="productPrice">当前状态：{{item.status}}</text>
-          </view>
-        </view>
-        <view class="productCount">
+    <scroll-view class="orders">
+      <view class="order" wx:for="{{Order}}">
+        <view class="header">
           <view>
-            <text>合计：￥{{item.money}}</text>
+            订单时间:{{item.time}}
+          </view>
+        </view>
+        <view class="product">
+          <image src="{{item.url}}"></image>
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+          </view>
+          <view class="status">
+            <text class="package">{{item.package}}</text>
+          </view>
+        </view>
+        <view class="foot">
+          <view class="money">
+            <text>应付：￥{{item.money}}元</text>
+          </view>
+          <view>
+            <button class="cu-btn bg-red" style="width: auto" bindtap="goToPages">待评价</button>
           </view>
         </view>
       </view>
-    </scroll-view>
+ </scroll-view>
   </swiper-item>
-  <!-- 待付款 -->
   <swiper-item>
-    <scroll-view class="hot-box" scroll-y="true">
-      <view class="orderDetails" wx:for="{{Order}}" wx:key=" ">
-        <view class="orderListTitle">
-           <text class="userName">{{item.name}}</text>
-          <text class="orderStatus">{{item.state}}</text>
-        </view>
-        <view class="orderListDetails">
-          <view class="productImg">
-            <image src="{{item.url}}" background-size="cover"></image>
-          </view>
-          <view class="productInfo">
-            <view class="productTitle">{{item.description}}</view>
-            <text class="productPrice">当前状态：{{item.status}}</text>
-          </view>
-        </view>
-        <view class="productCount">
+    <scroll-view class="orders">
+      <view class="order" wx:for="{{Order}}">
+        <view class="header">
           <view>
-             <text>合计：￥{{item.money}}</text>
+            订单时间:{{item.time}}
+          </view>
+        </view>
+        <view class="product">
+          <image src="{{item.url}}"></image>
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+          </view>
+          <view class="status">
+            <text class="package">{{item.package}}</text>
+          </view>
+        </view>
+        <view class="foot">
+          <view class="money">
+            <text>应付：￥{{item.money}}元</text>
+          </view>
+          <view>
+            <button class="cu-btn bg-red" style="width: auto">待付款</button>
           </view>
         </view>
       </view>
-    </scroll-view>
+ </scroll-view>
   </swiper-item>
-  <!-- 取消 -->
   <swiper-item>
-    <scroll-view class="hot-box" scroll-y="true">
-      <view class="orderDetails" wx:for="{{Order}}" wx:key=" ">
-        <view class="orderListTitle">
-         <text class="userName">{{item.name}}</text>
-          <text class="orderStatus">{{item.state}}</text>
-        </view>
-        <view class="orderListDetails">
-          <view class="productImg">
-            <image src="{{item.url}}" background-size="cover"></image>
-          </view>
-          <view class="productInfo">
-            <view class="productTitle">{{item.description}}</view>
-            <text class="productPrice">当前状态：{{item.status}}</text>
-          </view>
-        </view>
-        <view class="productCount">
+    <scroll-view class="orders">
+      <view class="order" wx:for="{{Order}}">
+        <view class="header">
           <view>
-             <text>合计：￥{{item.money}}</text>
+            订单时间:{{item.time}}
+          </view>
+        </view>
+        <view class="product">
+          <image src="{{item.url}}"></image>
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+          </view>
+          <view class="status">
+            <text class="package">{{item.package}}</text>
+          </view>
+        </view>
+        <view class="foot">
+          <view class="money">
+            <text>应付：￥{{item.money}}元</text>
+          </view>
+          <view>
+            <button class="cu-btn bg-red" style="width: auto">待付款</button>
           </view>
         </view>
       </view>
-    </scroll-view>
+ </scroll-view>
   </swiper-item>
-
   <swiper-item>
-    <scroll-view class="hot-box" scroll-y="true">
-      <view class="orderDetails" wx:for="{{Order}}" wx:key=" ">
-        <view class="orderListTitle">
-         <text class="userName">{{item.name}}</text>
-          <text class="orderStatus">{{item.state}}</text>
-        </view>
-        <view class="orderListDetails">
-          <view class="productImg">
-            <image src="{{item.url}}" background-size="cover"></image>
-          </view>
-          <view class="productInfo">
-            <view class="productTitle">{{item.description}}</view>
-            <text class="productPrice">当前状态：{{item.status}}</text>
-          </view>
-        </view>
-        <view class="productCount">
+    <scroll-view class="orders">
+      <view class="order" wx:for="{{Order}}">
+        <view class="header">
           <view>
-             <text>合计：￥{{item.money}}</text>
+            订单时间:{{item.time}}
+          </view>
+        </view>
+        <view class="product">
+          <image src="{{item.url}}"></image>
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+          </view>
+          <view class="status">
+            <text class="package">{{item.package}}</text>
+          </view>
+        </view>
+        <view class="foot">
+          <view class="money">
+            <text>应付：￥{{item.money}}元</text>
+          </view>
+          <view>
+            <button class="cu-btn bg-red" style="width: auto">待付款</button>
           </view>
         </view>
       </view>
-    </scroll-view>
+ </scroll-view>
   </swiper-item>
-
   <swiper-item>
-    <scroll-view class="hot-box" scroll-y="true">
-      <view class="orderDetails" wx:for="{{Order}}" wx:key=" ">
-        <view class="orderListTitle">
-         <text class="userName">{{item.name}}</text>
-          <text class="orderStatus">{{item.state}}</text>
-        </view>
-        <view class="orderListDetails">
-          <view class="productImg">
-            <image src="{{item.url}}" background-size="cover"></image>
-          </view>
-          <view class="productInfo">
-            <view class="productTitle">{{item.description}}</view>
-            <text class="productPrice">当前状态：{{item.status}}</text>
-          </view>
-        </view>
-        <view class="productCount">
+    <scroll-view class="orders">
+      <view class="order" wx:for="{{Order}}">
+        <view class="header">
           <view>
-             <text>合计：￥{{item.money}}</text>
+            订单时间:{{item.time}}
           </view>
         </view>
-        <view class="cu-bar flex padding-sm" style="flex-direction:row-reverse;justify-content:flex-start" >
-          <button class="cu-btn round bg-olive" style="width:auto; margin:0 0 0 10px" bindtap="goToPages" data-target="{{item.goToUrl}}">评价</button>
-          <button class="cu-btn round bg-olive" style="width:auto; margin:0 0 0 10px" data-target="{{item.goToUrl}}">确认收货</button>
+        <view class="product">
+          <image src="{{item.url}}"></image>
+          <view class="info">
+            <text class="title">{{item.title}}</text>
+            <text class="desc">{{item.desc}}</text>
+          </view>
+          <view class="status">
+            <text class="package">{{item.package}}</text>
+          </view>
+        </view>
+        <view class="foot">
+          <view class="money">
+            <text>应付：￥{{item.money}}元</text>
+          </view>
+          <view>
+            <button class="cu-btn bg-red" style="width: auto">待付款</button>
+          </view>
         </view>
       </view>
-    </scroll-view>
+ </scroll-view>
   </swiper-item>
- 
 </swiper>
-
-
-
+ 
+ 
