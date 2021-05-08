@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.WalletDetailMapper">
+    
+    <resultMap type="WalletDetail" id="WalletDetailResult">
+        <result property="walletDetailId"    column="wallet_detail_id"    />
+        <result property="userId"    column="user_id"    />
+        <result property="dealType"    column="deal_type"    />
+        <result property="detailType"    column="detail_type"    />
+        <result property="dealMoney"    column="deal_money"    />
+        <result property="time"    column="time"    />
+    </resultMap>
+
+    <sql id="selectWalletDetailVo">
+        select wallet_detail_id, user_id, deal_type, detail_type, deal_money, time from wallet_detail
+    </sql>
+
+    <select id="selectWalletDetailList" parameterType="WalletDetail" resultMap="WalletDetailResult">
+        <include refid="selectWalletDetailVo"/>
+        <where>  
+            <if test="userId != null "> and user_id = #{userId}</if>
+            <if test="dealType != null "> and deal_type = #{dealType}</if>
+            <if test="detailType != null "> and detail_type = #{detailType}</if>
+            <if test="dealMoney != null "> and deal_money = #{dealMoney}</if>
+            <if test="params.beginTime != null and params.beginTime != '' and params.endTime != null and params.endTime != ''"> and time between #{params.beginTime} and #{params.endTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectWalletDetailById" parameterType="Long" resultMap="WalletDetailResult">
+        <include refid="selectWalletDetailVo"/>
+        where wallet_detail_id = #{walletDetailId}
+    </select>
+        
+    <insert id="insertWalletDetail" parameterType="WalletDetail" useGeneratedKeys="true" keyProperty="walletDetailId">
+        insert into wallet_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="dealType != null">deal_type,</if>
+            <if test="detailType != null">detail_type,</if>
+            <if test="dealMoney != null">deal_money,</if>
+            <if test="time != null">time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="dealType != null">#{dealType},</if>
+            <if test="detailType != null">#{detailType},</if>
+            <if test="dealMoney != null">#{dealMoney},</if>
+            <if test="time != null">#{time},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWalletDetail" parameterType="WalletDetail">
+        update wallet_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userId != null">user_id = #{userId},</if>
+            <if test="dealType != null">deal_type = #{dealType},</if>
+            <if test="detailType != null">detail_type = #{detailType},</if>
+            <if test="dealMoney != null">deal_money = #{dealMoney},</if>
+            <if test="time != null">time = #{time},</if>
+        </trim>
+        where wallet_detail_id = #{walletDetailId}
+    </update>
+
+    <delete id="deleteWalletDetailById" parameterType="Long">
+        delete from wallet_detail where wallet_detail_id = #{walletDetailId}
+    </delete>
+
+    <delete id="deleteWalletDetailByIds" parameterType="String">
+        delete from wallet_detail where wallet_detail_id in 
+        <foreach item="walletDetailId" collection="array" open="(" separator="," close=")">
+            #{walletDetailId}
+        </foreach>
+    </delete>
+</mapper>

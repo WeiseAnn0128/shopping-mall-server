@@ -11,6 +11,52 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
+ Date: 08/05/2021 16:12:44
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for wallet_detail
+-- ----------------------------
+DROP TABLE IF EXISTS `wallet_detail`;
+CREATE TABLE `wallet_detail`  (
+  `wallet_detail_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '钱包明细ID',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `deal_type` int(1) NULL DEFAULT NULL COMMENT '交易类型（转入为1，支出为0）',
+  `detail_type` int(10) NULL DEFAULT NULL COMMENT '交易明细类型',
+  `deal_money` int(20) NULL DEFAULT NULL COMMENT '交易金额',
+  `time` timestamp(6) NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP(6) COMMENT '交易时间',
+  PRIMARY KEY (`wallet_detail_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '钱包明细' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of wallet_detail
+-- ----------------------------
+INSERT INTO `wallet_detail` VALUES (1, 1, 1, 1, 100, '2021-05-07 18:00:01.957781');
+INSERT INTO `wallet_detail` VALUES (2, 1, 0, 2, 200, '2021-05-07 18:00:47.036331');
+INSERT INTO `wallet_detail` VALUES (3, 1, 1, 1, 300, '2021-05-07 18:00:05.535921');
+INSERT INTO `wallet_detail` VALUES (4, 1, 0, 5, 400, '2021-05-07 00:00:00.000000');
+INSERT INTO `wallet_detail` VALUES (5, 1, 1, 1, 8000, '2021-05-08 00:00:00.000000');
+INSERT INTO `wallet_detail` VALUES (6, 2, 1, 6, 200, '2021-05-08 09:05:33.879508');
+INSERT INTO `wallet_detail` VALUES (7, 5, 0, 2, 500, '2021-05-07 18:00:53.088732');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : test
+ Source Server Type    : MySQL
+ Source Server Version : 50719
+ Source Host           : localhost:3306
+ Source Schema         : shopping_mall
+
+ Target Server Type    : MySQL
+ Target Server Version : 50719
+ File Encoding         : 65001
+
  Date: 30/04/2021 17:37:06
 */
 
@@ -514,5 +560,27 @@ values('积分表删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('积分表导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:myintegral:export',       '#', 'admin', sysdate(), '', null, '');
 
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细', '3', '1', 'wallet_detail', 'system/wallet_detail/index', 1, 0, 'C', '0', '0', 'system:wallet_detail:list', '#', 'admin', sysdate(), '', null, '钱包明细菜单');
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('钱包明细导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:export',       '#', 'admin', sysdate(), '', null, '');
 
 
