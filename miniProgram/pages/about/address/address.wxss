@@ -87,3 +87,6 @@ button{
   font-size: 31rpx;
   color: #fff;
 }
+.edit{
+  margin-right:20rpx ;
+}
