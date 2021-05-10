@@ -1,6 +1,9 @@
 package com.ruoyi.system.controller;
 
 import java.util.List;
+
+import com.ruoyi.common.utils.SecurityUtils;
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +45,18 @@ public class WalletDetailController extends BaseController
     {
         startPage();
         List<WalletDetail> list = walletDetailService.selectWalletDetailList(walletDetail);
+        return getDataTable(list);
+    }
+
+    @PreAuthorize("@ss.hasRole('wechat')")
+    @GetMapping("/listWechat")
+    public TableDataInfo listWechat(WalletDetail walletDetail)
+    {
+        startPage();
+        walletDetail.setUserId(SecurityUtils.getLoginUser().getUser().getUserId());
+
+        List<WalletDetail> list = walletDetailService.selectWalletDetailList(walletDetail);
+
         return getDataTable(list);
     }
 

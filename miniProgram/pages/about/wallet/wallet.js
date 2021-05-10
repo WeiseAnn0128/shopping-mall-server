@@ -1,14 +1,18 @@
 // pages/about/wallet/wallet.js
+const network = require('../../../utils/network.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    dealTypeNames: ['支出', '收入'],
+    detailTypeNames:['余额充值',' 干饭消费','逛街消费', '转账收入','娱乐支出','红包收入','生活服务', '学习支出'],
     balance:"999999999",
     date: '2021-04-23',//默认起始时间  
     date2: '2021-05-24',//默认结束时间 
-
+    pageSize:"",
+    pageNumber:"",
 
     array: ['全部', '支出', '收入'],
     objectArray: [
@@ -28,43 +32,7 @@ Page({
     ],
     index: 0,
     items: [
-    {
-      text: '转入',
-      money: '+100',
-      cl: 'color1',
-      time: '11:00',
-      time2: '2021/09/01',
-      src: '余额充值'
-    },{
-      text: '支出',
-      money: '-200',
-      cl:'color2',
-      time:'10:00',
-      time2: '2021/08/13',
-      src: '干饭消费'
-    },{
-      text: '转入',
-      money: '+300',
-      cl:'color1',
-      time:'9:00',
-      time2: '2021/06/07',
-      src: '余额充值'
-    },{
-      text: '支出',
-      money: '-400',
-      cl:'color2',
-      time:'8:00',
-      time2: '2021/05/29',
-      src: '逛街消费'
-    },
-    {
-      text: '转入',
-      money: '+8000',
-      cl:'color1',
-      time:'7:00',
-      time2: '2021/05/21',
-      src: '余额充值'
-    }
+      
     ]
   },
   bindPickerChange: function(e) {
@@ -72,7 +40,7 @@ Page({
     this.setData({
       index: e.detail.value
     })
-        
+    this.selectDetail();
   },
 
   // 时间段选择  
@@ -82,20 +50,29 @@ Page({
     that.setData({
       date: e.detail.value,
     })
+    this.selectDetail();
   },
   bindDateChange2(e) {
     let that = this;
     that.setData({
       date2: e.detail.value,
     })
+    this.selectDetail();
 
+},
+selectDetail:function(res){
+  network.request("system/wallet_detail/listWechat?pageNum=1&pageSize=10&params%5BbeginTime%5D=" + this.data.date + "&params%5BendTime%5D=" + this.data.date2 + " 23:59:59" + "&dealType=" + (this.data.index == 0 ? '' : this.data.index - 1),{},(res)=>{
+    this.setData({
+      items:res.rows,
+    }) 
+  },"GET",true)
 },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.selectDetail();
   },
 
   /**
