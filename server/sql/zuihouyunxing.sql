@@ -1,3 +1,41 @@
+﻿/*
+ Navicat Premium Data Transfer
+
+ Source Server         : Link
+ Source Server Type    : MySQL
+ Source Server Version : 50712
+ Source Host           : localhost:3306
+ Source Schema         : shopping_mall
+
+ Target Server Type    : MySQL
+ Target Server Version : 50712
+ File Encoding         : 65001
+
+ Date: 10/05/2021 11:07:06
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for signin_time
+-- ----------------------------
+DROP TABLE IF EXISTS `signin_time`;
+CREATE TABLE `signin_time`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '编号',
+  `user_id` int(11) NULL DEFAULT NULL COMMENT '用户ID',
+  `creat_time` datetime(0) NULL DEFAULT NULL COMMENT '签到时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of signin_time
+-- ----------------------------
+INSERT INTO `signin_time` VALUES (1, 1, '2021-05-10 10:34:20');
+INSERT INTO `signin_time` VALUES (2, 2, '2021-05-10 09:29:48');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 /*
  Navicat Premium Data Transfer
 
@@ -584,3 +622,25 @@ insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame
 values('钱包明细导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:wallet_detail:export',       '#', 'admin', sysdate(), '', null, '');
 
 
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间', '2006', '1', 'time', 'system/time/index', 1, 0, 'C', '0', '0', 'system:time:list', '#', 'admin', sysdate(), '', null, '签到时间菜单');
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:time:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:time:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:time:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:time:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('签到时间导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:time:export',       '#', 'admin', sysdate(), '', null, '');
