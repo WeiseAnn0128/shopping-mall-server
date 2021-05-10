@@ -31,9 +31,7 @@ Page({
      
     ],
     index: 0,
-    items: [
-      
-    ]
+    items: []
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -67,6 +65,12 @@ selectDetail:function(res){
     }) 
   },"GET",true)
 },
+
+  jumpPages(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.target,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

@@ -1,0 +1,22 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" class="text-xl">零钱明细</view>
+</cu-custom>
+<view class="radius shadow shadow-lg bg-white margin-top">
+  <view class="solids-bottom padding-lg flex align-center">
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xl text-black padding">{{mode}}-{{business}}</view>
+      <view class="solid-bottom text-xxl padding">
+        <text class="text-bold text-black">{{amountOfMoney}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="flex p-xs mb-sm" wx:for="{{items}}">
+  <view class="flex-sub bg-white padding-sm radius">
+    <text class="text-lg text-gary">{{item.attribute}}</text>
+  </view>
+  <view class="flex-twice bg-white padding-sm radius">
+    <text class="text-lg text-black">{{item.content}}</text>
+  </view>
+</view>

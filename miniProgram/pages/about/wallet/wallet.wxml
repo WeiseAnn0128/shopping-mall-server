@@ -34,7 +34,6 @@
       <view class="cu-btn bg-gradual-blue round" bindtap="selectDetail">查询</view>        
     </view>  
   </view> 
-  
   <view class="cu-list menu-avatar" wx:for="{{items}}">
     <view class="cu-item">
       <view class="content">
