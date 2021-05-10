@@ -33,7 +33,7 @@
       </picker>        
     </view>  
   </view> 
-  <view class="cu-list menu-avatar" wx:for="{{items}}">
+  <view class="cu-list menu-avatar" wx:for="{{items}}" bindtap="jumpPages" data-target="{{item.url}}" >
     <view class="cu-item">
       <view class="content">
         <view class="text-grey">
