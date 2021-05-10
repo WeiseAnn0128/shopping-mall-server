@@ -14,11 +14,12 @@ Page({
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({
-      url: '../about/home/home'
+      url: '../home/home'
     })
   },
 
   userLogin:function(){
+    let that = this;
     //1、调用获取用户信息接口
     wx.getUserProfile({
       desc: '用于完善用户资料',
@@ -29,7 +30,8 @@ Page({
             hasUserInfo:true
           }),
           network.request('wechat/updateUserInfo', res.userInfo, function(data) {
-            console.log(data)
+            console.log(data);
+            that.bindViewTap();
           }, 'post', true);
       },
       fail: res =>{
