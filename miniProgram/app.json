@@ -18,7 +18,8 @@
     "pages/about/question/question",
     "pages/about/comment/comment",
     "pages/about/orders/orders",
-    "pages/goods/submit/submit"
+    "pages/goods/submit/submit",
+    "pages/about/payment/payment"
   ],
   "window": {
     "backgroundTextStyle": "light",

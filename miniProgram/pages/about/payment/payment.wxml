@@ -1,0 +1,57 @@
+<!--pages/about/payment/payment.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText" isBack="{{true}}">返回</view><view slot="content"></view>
+  <view slot="content">账单详情</view>
+</cu-custom>
+<!--表头-->
+<view class="solids-bottom align-center">
+  <view class="detail-one" > 
+    <view class="icon-bag">
+      <view class="iconfont icon-qiandai1" style="font-size:60px" ></view>
+    </view>
+    <view class="name">微信转账-我</view>
+    <view class="mony" >+100.00</view>
+  </view>
+</view>
+<view class="solids-bottom align-center">
+  <view class="detail-two ">
+      <view class="flex-sub">
+        <view class="message">
+          <view class="text">
+            <view class="one" style="padding-bottom:10px">当前状态
+              <text style="margin-left:20px">{{message1}}</text>
+            </view>
+            <view class="two" style="padding-bottom:10px">转账说明
+              <text style="margin-left:20px">{{message2}}</text>
+            </view>
+            <view class="three" style="padding-bottom:10px">转账时间
+              <text style="margin-left:20px">{{message3}}</text>
+            </view>
+            <view class="four" style="padding-bottom:10px">收款时间
+              <text style="margin-left:20px">{{message4}}</text>
+            </view>
+            <view class="five" style="padding-bottom:10px">转账单号
+              <text style="margin-left:20px">{{message5}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class="bottom">
+  <view class="solids-bottom align-center">
+    <button class="p" style="width:370px">评价
+      <view class="arrow"></view>
+    </button>
+  </view>
+  <view class="solids-bottom align-center">
+    <button class="p" style="width:370px">对订单有疑惑
+      <view class="arrow"></view>
+    </button>
+  </view>
+  <view class="solids-bottom align-center">
+    <button class="p" style="width:370px">常见问题
+      <view class="arrow"></view>
+    </button>
+  </view>
+</view>

@@ -33,22 +33,27 @@
       </picker>        
     </view>  
   </view> 
-  <view class="cu-list menu-avatar" wx:for="{{items}}">
-    <view class="cu-item">
-      <view class="content">
-        <view class="text-grey">
-          <text class="text-cut" style="width: 127rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -66rpx">{{item.text}}</text>
-          <view class="{{item.cl}}" style="position: relative; left: 141rpx; top: 15rpx; width: 155rpx; height: 71rpx; display: block; box-sizing: border-box">{{item.money}}</view>
-        </view>
-        <view class="text-gray text-sm flex" style="width: 303rpx; height: 43rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
-          <text class="text-cut" style="width: 277rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -90rpx">{{item.src}}</text>
+  <navigator class="pay"
+      wx:for="{{items}}"
+      wx:key="items_src"
+      url="/pages/about/payment/payment?items_src={{item.items_src}}">
+    <view class="cu-list menu-avatar" wx:for="{{items}}">
+      <view class="cu-item">    
+          <view class="content">
+          <view class="text-grey">
+            <text class="text-cut" style="width: 127rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -66rpx">{{item.text}}</text>
+            <view class="{{item.cl}}" style="position: relative; left: 141rpx; top: 15rpx; width: 155rpx; height: 71rpx; display: block; box-sizing: border-box">{{item.money}}</view>
+          </view>
+          <view class="text-gray text-sm flex" style="width: 303rpx; height: 43rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
+            <text class="text-cut" style="width: 277rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -90rpx">{{item.src}}</text>
+          </view>
+          </view>
+        <view class="action">
+          <view style="width: 99rpx; height: 75rpx; display: block; box-sizing: border-box; top: 8rpx; position: relative; left: -45rpx">
+            <view>{{item.time2}} </view>
+            {{item.time}}</view>
         </view>
       </view>
-      <view class="action">
-        <view style="width: 99rpx; height: 75rpx; display: block; box-sizing: border-box; top: 8rpx; position: relative; left: -45rpx">
-          <view>{{item.time2}} </view>
-          {{item.time}}</view>
-      </view>
-    </view>
-  </view>
+    </view> 
+  </navigator>
 </view>
