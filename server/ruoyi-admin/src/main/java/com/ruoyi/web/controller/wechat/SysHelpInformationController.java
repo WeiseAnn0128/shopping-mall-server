@@ -46,6 +46,18 @@ public class SysHelpInformationController extends BaseController
     }
 
     /**
+     * 查询常见问题的解答列表
+     */
+    @PreAuthorize("@ss.hasRole('wechat')")
+    @GetMapping("/listwechat")
+    public TableDataInfo listWechat(SysHelpInformation sysHelpInformation)
+    {
+        startPage();
+        List<SysHelpInformation> list = sysHelpInformationService.selectSysHelpInformationList(sysHelpInformation);
+        return getDataTable(list);
+    }
+
+    /**
      * 导出常见问题的解答列表
      */
     @PreAuthorize("@ss.hasPermi('system:information:export')")

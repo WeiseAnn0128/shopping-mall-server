@@ -1,46 +1,37 @@
 // pages/about/question/question.js
+const network = require('../../../utils/network.js')
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    QuestionAndAnswerList : [
-      {
-        question:"什么是微信小程序？",
-        answer:"小程序是一种新的开放能力,您公司开发人员可以快速开发一个小程序。用户不需要下载安装即可在微信内快捷的使用该小程序的服务(如小程序摩拜单车、肯德基+等)。",
-        flg:false,
-        initFlg : true,
-        animation:"",
-      },
-      {
-        question:"什么是微信小程序？",
-        answer:"小程序是一种新的开放能力,您公司开发人员可以快速开发一个小程序。用户不需要下载安装即可在微信内快捷的使用该小程序的服务(如小程序摩拜单车、肯德基+等)。",
-        flg:false,
-        initFlg : true,
-        animation:"",
-      },
-      {
-        question:"什么是微信小程序？",
-        answer:"小程序是一种新的开放能力,您公司开发人员可以快速开发一个小程序。用户不需要下载安装即可在微信内快捷的使用该小程序的服务(如小程序摩拜单车、肯德基+等)。",
-        flg:false,
-        initFlg : true,
-        animation:"",
-      },
-      {
-        question:"什么是微信小程序？",
-        answer:"小程序是一种新的开放能力,您公司开发人员可以快速开发一个小程序。用户不需要下载安装即可在微信内快捷的使用该小程序的服务(如小程序摩拜单车、肯德基+等)。",
-        flg:false,
-        initFlg : true,
-        animation:"",
+    searchValue : '',
+    QuestionAndAnswerList : [],
+  },
+
+  selectQuestion:function(res){
+    network.request("system/information/listwechat?question=" + this.data.searchValue,{},(res)=>{
+      let rowT = res.rows;
+      for (let index = 0; index < rowT.length; index++) {
+        const element = rowT[index];
+        element.initFlg = true;
       }
-    ],
+      this.setData({
+        searchValue : '',
+        QuestionAndAnswerList: rowT,
+      }) 
+    },"GET",true);
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.selectQuestion();
+  },
+  
+  searchIcon: function(e){
+    this.data.searchValue = e.detail.value;
   },
 
   /**

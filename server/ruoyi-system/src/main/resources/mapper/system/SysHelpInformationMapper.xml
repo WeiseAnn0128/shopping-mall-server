@@ -18,8 +18,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectSysHelpInformationList" parameterType="SysHelpInformation" resultMap="SysHelpInformationResult">
         <include refid="selectSysHelpInformationVo"/>
         <where>  
-            <if test="question != null  and question != ''"> and question = #{question}</if>
-            <if test="answer != null  and answer != ''"> and answer = #{answer}</if>
+            <if test="question != null  and question != ''"> and question like concat('%',#{question},'%')</if>
+            <if test="answer != null  and answer != ''"> and answer like concat('%',#{answer},'%')</if>
         </where>
     </select>
     
