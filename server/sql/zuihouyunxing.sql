@@ -493,7 +493,7 @@ CREATE TABLE `sys_user`  (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES (1, 103, 'admin', '若依', '00', 'ry@163.com', '15888888888', NULL, '1', '', NULL, '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-05-06 18:47:34', 'admin', '2021-05-06 18:47:34', '', NULL, '管理员', NULL, NULL, NULL,NULL);
-INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', NULL, '1', '', NULL, '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-05-06 18:47:34', 'admin', '2021-05-06 18:47:34', '', NULL, '测试员', NULL, NULL, NULL，NULL);
+INSERT INTO `sys_user` VALUES (2, 105, 'ry', '若依', '00', 'ry@qq.com', '15666666666', NULL, '1', '', NULL, '$2a$10$7JB720yubVSZvUI0rEqK/.VqGOZTH.ulu33dHOiBE8ByOhJIrdAu2', '0', '0', '127.0.0.1', '2021-05-06 18:47:34', 'admin', '2021-05-06 18:47:34', '', NULL, '测试员', NULL, NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;
 
