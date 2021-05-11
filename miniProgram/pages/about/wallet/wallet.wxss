@@ -79,7 +79,7 @@ page {
       justify-content:center;
   }
 
-  .color1 {
+  .green {
     color: green;
     display:flex;
     font-size: 40rpx;
@@ -87,7 +87,7 @@ page {
     justify-content:center;
 }
 
-  .color2 {
+  .red {
       color: red;
       display:flex;
       font-size: 40rpx;

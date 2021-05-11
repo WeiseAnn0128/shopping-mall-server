@@ -1,18 +1,41 @@
-// pages/about/ad-address/ad-address.js
+// pages/about/trainformation/trainformation.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    region: ['省', '市' ,'区']
+    business: '天利超市',
+    mode: '扫二维码付款',
+    amountOfMoney: '-80.00',
+    items: [
+      {
+        attribute : '类型',
+        content : 'EXPENDITURE'
+      },
+      {
+        attribute : '时间',
+        content : '2021-05-07 14:42:56'
+      },
+      {
+        attribute : '交易单号',
+        content : '100010711069318940902797116'
+      },      {
+        attribute : '余额',
+        content : '￥9999.99'
+      },
+      {
+        attribute : '备注',
+        content : '扫二维码付款给天利超市'
+      },
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
@@ -62,11 +85,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  // 地址选择
-  RegionChange: function(e) {
-    this.setData({
-      region: e.detail.value
-    })
-  },
+  }
 })
