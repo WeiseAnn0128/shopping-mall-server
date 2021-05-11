@@ -20,8 +20,9 @@
     "pages/about/orders/orders",
     "pages/goods/submit/submit",
     "pages/about/edit-address/edit-address",
-    "pages/about/trainformation/trainformation"
-  ],
+    "pages/about/trainformation/trainformation",
+    "pages/about/payment/payment" 
+ ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
