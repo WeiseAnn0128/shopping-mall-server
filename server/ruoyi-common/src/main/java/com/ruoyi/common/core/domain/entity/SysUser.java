@@ -48,6 +48,7 @@ public class SysUser extends BaseEntity
     /** 手机号码 */
     @Excel(name = "手机号码")
     private String phonenumber;
+    private String birthday;
 
     /** 用户性别 */
     @Excel(name = "用户性别", readConverterExp = "0=男,1=女,2=未知")
@@ -102,6 +103,9 @@ public class SysUser extends BaseEntity
 
     /** 岗位组 */
     private Long[] postIds;
+    /** 区 */
+    @Excel(name = "区")
+    private String district;
 
     public SysUser()
     {
@@ -188,7 +192,16 @@ public class SysUser extends BaseEntity
     {
         this.phonenumber = phonenumber;
     }
+    public void setBirthday(String birthday)
+    {
+        this.birthday = birthday;
+    }
 
+    public String getBirthday()
+    {
+        return birthday;
+    }
+    private String signature;
     public String getSex()
     {
         return sex;
@@ -225,12 +238,28 @@ public class SysUser extends BaseEntity
         this.province = province;
     }
 
+
+    public void setCity(String city) {
+        this.city = city;
+    }
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+    public String getDistrict() {
+        return district;
+    }
+    public void setSignature(String signature)
+    {
+        this.signature = signature;
+    }
+
+    public String getSignature()
+    {
+        return signature;
     }
 
     @JsonIgnore
@@ -335,6 +364,7 @@ public class SysUser extends BaseEntity
         this.postIds = postIds;
     }
 
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -344,6 +374,7 @@ public class SysUser extends BaseEntity
                 .append("nickName", getNickName())
                 .append("email", getEmail())
                 .append("phonenumber", getPhonenumber())
+                .append("birthday", getBirthday())
                 .append("sex", getSex())
                 .append("avatar", getAvatar())
                 .append("password", getPassword())
@@ -361,6 +392,8 @@ public class SysUser extends BaseEntity
                 .append("country", getCountry())
                 .append("province", getProvince())
                 .append("city", getCity())
+                .append("district", getDistrict())
+                .append("signature", getSignature())
                 .toString();
     }
 }

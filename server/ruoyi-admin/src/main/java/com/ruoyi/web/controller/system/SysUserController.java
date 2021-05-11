@@ -56,6 +56,34 @@ public class SysUserController extends BaseController
     /**
      * 获取用户列表
      */
+//    @PreAuthorize("@ss.hasRole('wechat')")
+    @GetMapping("/getloginUser")
+    public AjaxResult getloginUser(MultipartFile file, boolean updateSupport) throws Exception
+    {
+        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        Object sysUser=loginUser.getUser();
+        return AjaxResult.success(sysUser);
+    }
+//    @PreAuthorize("@ss.hasRole('wechat')")
+    @PutMapping("/edit1")
+    public AjaxResult edit1(@Validated @RequestBody SysUser user)
+    {
+        System.out.println(1111111);
+        user.setUserId(SecurityUtils.getLoginUser().getUser().getUserId());
+        if (StringUtils.isNotEmpty(user.getPhonenumber())
+                && UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user)))
+        {
+            return AjaxResult.error("修改用户'" + user.getUserName() + "'失败，手机号码已存在");
+        }
+        else if (StringUtils.isNotEmpty(user.getEmail())
+                && UserConstants.NOT_UNIQUE.equals(userService.checkEmailUnique(user)))
+        {
+            return AjaxResult.error("修改用户'" + user.getUserName() + "'失败，邮箱账号已存在");
+        }
+        user.setUpdateBy(SecurityUtils.getUsername());
+        return toAjax(userService.updateUser(user));
+    }
+
     @PreAuthorize("@ss.hasPermi('system:user:list')")
     @GetMapping("/list")
     public TableDataInfo list(SysUser user)
