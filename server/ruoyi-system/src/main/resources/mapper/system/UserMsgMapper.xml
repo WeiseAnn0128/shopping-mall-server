@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.UserMsgMapper">
+    
+    <resultMap type="UserMsg" id="UserMsgResult">
+        <result property="userId"    column="user_id"    />
+        <result property="userMsg"    column="user_msg"    />
+        <result property="time"    column="time"    />
+        <result property="title"    column="title"    />
+    </resultMap>
+
+    <sql id="selectUserMsgVo">
+        select user_id, user_msg, time, title from user_msg
+    </sql>
+
+    <select id="selectUserMsgList" parameterType="UserMsg" resultMap="UserMsgResult">
+        <include refid="selectUserMsgVo"/>
+        <where>  
+            <if test="userMsg != null  and userMsg != ''"> and user_msg = #{userMsg}</if>
+            <if test="time != null "> and time = #{time}</if>
+            <if test="title != null  and title != ''"> and title = #{title}</if>
+        </where>
+    </select>
+    
+    <select id="selectUserMsgById" parameterType="Long" resultMap="UserMsgResult">
+        <include refid="selectUserMsgVo"/>
+        where user_id = #{userId}
+    </select>
+        
+    <insert id="insertUserMsg" parameterType="UserMsg">
+        insert into user_msg
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">user_id,</if>
+            <if test="userMsg != null">user_msg,</if>
+            <if test="time != null">time,</if>
+            <if test="title != null">title,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">#{userId},</if>
+            <if test="userMsg != null">#{userMsg},</if>
+            <if test="time != null">#{time},</if>
+            <if test="title != null">#{title},</if>
+         </trim>
+    </insert>
+
+    <update id="updateUserMsg" parameterType="UserMsg">
+        update user_msg
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="userMsg != null">user_msg = #{userMsg},</if>
+            <if test="time != null">time = #{time},</if>
+            <if test="title != null">title = #{title},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteUserMsgById" parameterType="Long">
+        delete from user_msg where user_id = #{userId}
+    </delete>
+
+    <delete id="deleteUserMsgByIds" parameterType="String">
+        delete from user_msg where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+</mapper>
