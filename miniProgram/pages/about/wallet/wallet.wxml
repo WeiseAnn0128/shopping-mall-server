@@ -30,22 +30,23 @@
         <view class="picker">  
           {{date2}}  
         </view>  
-      </picker>        
+      </picker>
+      <view class="cu-btn bg-gradual-blue round" bindtap="selectDetail">查询</view>        
     </view>  
   </view> 
-  <view class="cu-list menu-avatar" wx:for="{{items}}" bindtap="jumpPages" data-target="{{item.url}}" >
+  <view class="cu-list menu-avatar" wx:for="{{items}}">
     <view class="cu-item">
       <view class="content">
         <view class="text-grey">
-          <text class="text-cut" style="width: 127rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -66rpx">{{item.text}}</text>
-          <view class="{{item.cl}}" style="position: relative; left: 141rpx; top: 15rpx; width: 155rpx; height: 71rpx; display: block; box-sizing: border-box">{{item.money}}</view>
+          <text class="text-cut" style="width: 127rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -66rpx">{{dealTypeNames[item.dealType]}}</text>
+          <view class="{{item.dealType == 0 ? 'green' : 'red'}}" style="position: relative; left: 141rpx; top: 40rpx; width: 155rpx; height: 71rpx; display: block; box-sizing: border-box">{{item.dealType == 0 ? '-' : '+'}}{{item.dealMoney}}</view>
         </view>
         <view class="text-gray text-sm flex" style="width: 303rpx; height: 43rpx; display: flex; box-sizing: border-box; left: NaNrpx; top: NaNrpx">
-          <text class="text-cut" style="width: 277rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -90rpx">{{item.src}}</text>
+          <text class="text-cut" style="width: 277rpx; height: 43rpx; display: block; box-sizing: border-box; top: 0rpx; position: relative; left: -90rpx">{{detailTypeNames[item.detailType-1]}}</text>
         </view>
       </view>
       <view class="action">
-        <view style="width: 99rpx; height: 75rpx; display: block; box-sizing: border-box; top: 8rpx; position: relative; left: -45rpx">
+        <view style="width: 150rpx; height: 75rpx; display: block; box-sizing: border-box; top: 8rpx; position: relative; left: -45rpx">
           <view>{{item.time2}} </view>
           {{item.time}}</view>
       </view>
