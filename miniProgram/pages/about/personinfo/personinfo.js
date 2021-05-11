@@ -1,17 +1,40 @@
 const app = getApp();
+const network = require('../../../utils/network.js')
 Page({
   data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar,
-    index: null,
-    multiIndex: [0, 0, 0],
+    user:{
+    },
+    // StatusBar: app.globalData.StatusBar,
+    // CustomBar: app.globalData.CustomBar,
+    // index: null,
+    // nickname:'',
+    // multiIndex: [0, 0, 0],
     time: '12:01',
-    date: '2018-12-25',
-    region: ['广东省', '广州市', '海珠区'],
-    imgList: [],
-    modalName: null,
-    textareaAValue: '',
-    textareaBValue: ''
+    defaultRegion: ['北京市', '北京市', '东城区'],
+    now: new Date().format('yyyy-MM-dd')
+    // imgList: [],
+    // modalName: null,
+    // textareaAValue: '',
+    // textareaBValue: ''
+  },
+  onLoad: function () {
+    var that=this
+    
+    network.request('system/user/getloginUser', {}, function(res) {
+      console.log(res)
+      console.log(res.data.nickName)
+      if (!res.data.province || !res.data.city || !res.data.district) {
+        res.data.province = that.data.defaultRegion[0];
+        res.data.city = that.data.defaultRegion[1];
+        res.data.district = that.data.defaultRegion[2];
+      }
+      if (!res.data.birthday) {
+        res.data.birthday = new Date().format('yyyy-MM-dd');
+      }
+      that.setData({
+        user:res.data
+      })
+    }, 'GET', true);
   },
   PickerChange(e) {
     console.log(e);
@@ -19,6 +42,7 @@ Page({
       index: e.detail.value
     })
   },
+ 
 
   MultiColumnChange(e) {
     let data = {
@@ -36,12 +60,15 @@ Page({
   },
   DateChange(e) {
     this.setData({
-      date: e.detail.value
+      'user.birthday': e.detail.value
     })
   },
   RegionChange: function(e) {
+    console.log(e.detail.value)
     this.setData({
-      region: e.detail.value
+      'user.province': e.detail.value[0],
+      'user.city': e.detail.value[1],
+      'user.district': e.detail.value[2]
     })
   },
   ChooseImage() {
@@ -125,7 +152,21 @@ Page({
     })
 },
 formSubmit:function(e){
-  console.log('form发生了submit事件，携带数据为：', e.detail.value)
+  var a=e.detail.value
+ 
+  this.setData({
+    'user.nickName':a.nickName,
+    'user.sex':a.sex,
+    'user.phonenumber':a.phone,
+    'user.signature':a.qianming,
+    'user.birthday':a.birthday,
+    // 'user.avatar':a.avatar,
+    'user.province':a.province,
+    'user.city':a.city,
+    'user.district':a.district
+  })
+  network.request('system/user/edit1', this.data.user, function(res) {
+  }, 'put', true);
 },
 })
 

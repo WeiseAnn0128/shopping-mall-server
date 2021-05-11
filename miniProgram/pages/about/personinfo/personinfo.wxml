@@ -10,7 +10,7 @@
 	</view> -->
 <view class="user">
 　　　　<view class="edit-righr-bar">
-　　　　<image class="head-portrait" src='https://img0.baidu.com/it/u=1917437437,301204826&fm=26&fmt=auto&gp=0.jpg' bindtap='changeAvatar' style="position: relative; left: 286rpx; top: -50rpx; width: 99rpx; height: 104rpx; display: inline-block; box-sizing: border-box"></image>
+　　　　<image class="head-portrait" src='https://img0.baidu.com/it/u=1917437437,301204826&fm=26&fmt=auto&gp=0.jpg' bindtap='changeAvatar' style="position: relative; left: 286rpx; top: -50rpx; width: 99rpx; height: 104rpx; display: inline-block; box-sizing: border-box" name='avatar' value="{{user.avatar}}"></image>
 　　</view>	
  </view>	
 
@@ -18,36 +18,37 @@
 <form bindsubmit="formSubmit">
 	<view class="cu-form-group margin-top">
 		<view class="title">昵称</view>
-		<input name='nickname' placeholder="请输入昵称"></input>
+		<input name='nickName'value="{{user.nickName}}"></input>
 	</view>
 	<view class="cu-form-group">
 		<view class="title">性别</view>
-		<input name='sex' placeholder="请填写性别"></input>
+		<input name='sex' value="{{user.sex}}"></input>
   </view>
   	<view class="cu-form-group">
 		<view class="title">生日</view>
-		<picker bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange" name="birthday">
+		<picker mode="date" start="1900-01-01" end="{{now}}" bindchange="DateChange" name="birthday">
 			<view class="picker">
-				{{date}}
+				{{user.birthday}}
 			</view>
 		</picker>
   </view>
   
   <view class="cu-form-group">
 		<view class="title">个性签名</view>
-		<input name='qianming' placeholder="请填写个性签名"></input>
+		<input name='qianming' value="{{user.signature}}"></input>
 	</view>
 
 
 	<view class="cu-form-group">
 		<view class="title">地址选择</view>
-		<picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+		<picker mode="region" bindchange="RegionChange" custom-item="{{customItem}}">
 			<view class="picker">
-				{{region[0]}}，{{region[1]}}，{{region[2]}}
+				{{user.province}}，{{user.city}}，{{user.district}}
+				
 			</view>
-			<input style="display: none" name="province" value="{{region[0]}}" />
-			<input style="display: none" name="city" value="{{region[1]}}" />
-			<input style="display: none" name="district" value="{{region[2]}}" />
+			<input style="display: none" name="province" value="{{user.province}}" />
+			<input style="display: none" name="city" value="{{user.city}}" />
+			<input style="display: none" name="district" value="{{user.district}}" />
 		</picker>
 	</view>
 	<view class="cu-form-group">
@@ -57,7 +58,7 @@
 	</view>
 	<view class="cu-form-group">
 		<view class="title">手机号码</view>
-		<input  name='phone' class="weui-input" maxlength="11" placeholder="请输入手机号"></input>
+		<input  name='phone' class="weui-input" maxlength="11" value="{{user.phonenumber}}"></input>
 		<view class="cu-capsule radius">
 			<view class="cu-tag bg-blue">
 				+86
