@@ -19,6 +19,7 @@
     "pages/about/comment/comment",
     "pages/about/orders/orders",
     "pages/goods/submit/submit",
+    "pages/about/edit-address/edit-address",
     "pages/about/trainformation/trainformation"
   ],
   "window": {

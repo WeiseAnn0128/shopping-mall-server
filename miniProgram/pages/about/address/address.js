@@ -15,10 +15,10 @@ Page({
   for(var i = 0; i<3;i++){
     var address = {}
     address.id = " "+(1+i);
-    address.name="沈玉川"+(1+i);
-    address.mobile="188888888"+(1+i);
-    address.address="河南省商丘市睢阳区"
-    address.address=" 郭村镇 55"+(1+i)+"号";
+    address.name="某某某 "+(1+i);
+    address.mobile="123456777"+(1+i);
+    address.address="河南省新乡市牧野区"
+    address.address=" 建设东路"+(1+i)+"号";
     address.isDefault = false;
     address.checked =false;
     if(i==0){
@@ -111,5 +111,12 @@ Page({
   wx.navigateTo({
     url: '/pages/about/ad-address/ad-address',
   })
-  }
+  },
+//编辑地址
+clickEdit(e){
+  wx.navigateTo({
+    url: '/pages/about/edit-address/edit-address',
+  })
+  }  
 })
+

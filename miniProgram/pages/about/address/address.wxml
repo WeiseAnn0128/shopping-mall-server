@@ -17,8 +17,10 @@
           <icon type="{{item.isDefault?'success' : 'circle'}}" size="15"></icon> 
            默认地址
       </view>
-      <view class="right">
+      <view class="right"> 
+        <view class="edit" bindtap="clickDelete" data-index="{{index}} "bindtap="clickEdit">编辑</view>
         <view class="text" bindtap="clickDelete" data-index="{{index}}">删除</view>
+       
         </view>
       </view>
   </view>

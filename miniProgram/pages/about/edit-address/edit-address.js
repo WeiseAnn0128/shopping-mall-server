@@ -69,4 +69,9 @@ Page({
       region: e.detail.value
     })
   },
+  clickAdd(e){
+    wx.navigateTo({
+      url: '/pages/about/address/address',
+    })
+    }  
 })
