@@ -1,6 +1,46 @@
 ﻿/*
  Navicat Premium Data Transfer
 
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 50719
+ Source Host           : localhost:3306
+ Source Schema         : minishopping_mall
+
+ Target Server Type    : MySQL
+ Target Server Version : 50719
+ File Encoding         : 65001
+
+ Date: 11/05/2021 11:11:58
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for user_msg
+-- ----------------------------
+DROP TABLE IF EXISTS `user_msg`;
+CREATE TABLE `user_msg`  (
+  `user_id` int(11) NOT NULL COMMENT '用户ID',
+  `user_msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '发送给用户的消息',
+  `time` datetime(0) NULL DEFAULT NULL COMMENT '发送消息的时间',
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '消息标题',
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '消息列表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_msg
+-- ----------------------------
+INSERT INTO `user_msg` VALUES (1, '欢迎使用我们商城', '2020-05-10 00:00:00', '第一次使用');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+/*
+ Navicat Premium Data Transfer
+
  Source Server         : Link
  Source Server Type    : MySQL
  Source Server Version : 50712
@@ -644,3 +684,26 @@ values('签到时间删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'sys
 
 insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
 values('签到时间导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:time:export',       '#', 'admin', sysdate(), '', null, '');
+
+-- 菜单 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表', '2006', '1', 'message', 'system/message/index', 1, 0, 'C', '0', '0', 'system:message:list', '#', 'admin', sysdate(), '', null, '消息列表菜单');
+
+-- 按钮父菜单ID
+SELECT @parentId := LAST_INSERT_ID();
+
+-- 按钮 SQL
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表查询', @parentId, '1',  '#', '', 1, 0, 'F', '0', '0', 'system:message:query',        '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表新增', @parentId, '2',  '#', '', 1, 0, 'F', '0', '0', 'system:message:add',          '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表修改', @parentId, '3',  '#', '', 1, 0, 'F', '0', '0', 'system:message:edit',         '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表删除', @parentId, '4',  '#', '', 1, 0, 'F', '0', '0', 'system:message:remove',       '#', 'admin', sysdate(), '', null, '');
+
+insert into sys_menu (menu_name, parent_id, order_num, path, component, is_frame, is_cache, menu_type, visible, status, perms, icon, create_by, create_time, update_by, update_time, remark)
+values('消息列表导出', @parentId, '5',  '#', '', 1, 0, 'F', '0', '0', 'system:message:export',       '#', 'admin', sysdate(), '', null, '');
