@@ -21,8 +21,8 @@
     "pages/goods/submit/submit",
 	  "pages/about/edit-address/edit-address",
     "pages/about/trainformation/trainformation",
-	"pages/about/payment/payment"
-  ],
+  "pages/about/payment/payment" 
+ ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
