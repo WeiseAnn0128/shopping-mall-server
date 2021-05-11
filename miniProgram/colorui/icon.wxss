@@ -1224,3 +1224,21 @@
 .cuIcon-btn:before {
 	content: "\e601";
 }
+@font-face {
+  font-family: "iconfont"; /* Project id 2533513 */
+  src: url('//at.alicdn.com/t/font_2533513_0rfaasfgtuq8.woff2?t=1620436768201') format('woff2'),
+       url('//at.alicdn.com/t/font_2533513_0rfaasfgtuq8.woff?t=1620436768201') format('woff'),
+       url('//at.alicdn.com/t/font_2533513_0rfaasfgtuq8.ttf?t=1620436768201') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-qiandai1:before {
+	content: "\e600";
+}
