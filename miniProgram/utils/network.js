@@ -47,6 +47,7 @@ function request0(url, data, callBack, method, isShowLoading) {
     success: function(res) {
       if (res.data.code == 200) {
         callBack(res.data)
+        wx.hideToast();
       } else {
         wx.showToast({
           title: res.data.msg,

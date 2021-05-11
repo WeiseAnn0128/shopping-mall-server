@@ -6,8 +6,11 @@
 <view class="cu-bar bg-white search fixed" style="top:60px">
   <view class="search-form round">
     <text class="cuIcon-search"></text>
-    <input type="text" placeholder="搜索icon" confirm-type="search" bindinput="searchIcon"></input>
+    <input type="text" placeholder="请输入要搜索的问题" confirm-type="search" bindinput="searchIcon" value="{{searchValue}}"></input>
   </view>
+  <view class="action">
+    <button class="cu-btn bg-blue shadow-blur round" style="width: auto" bindtap="selectQuestion">搜索</button>
+   </view>
 </view>
 <view class="solids-bottom padding-xs flex align-center" style="top:40px" wx:for="{{QuestionAndAnswerList}}" wx:key="index">
     <view class="flex-sub ">
